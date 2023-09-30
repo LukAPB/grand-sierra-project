@@ -1,0 +1,200 @@
+/*# sourceMappingURL=style.css.map */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    color: black;
+}
+
+a:hover:not(.botao, .fotos-suite a, .item-servicos, .logo) {
+    width: fit-content;
+    border-bottom: 2px solid black;
+    color: black;
+}
+
+.item-servicos:hover {
+    color: black;
+}
+
+.header-index {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+.header-form {
+    width: 100%;
+    z-index: 100;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+header ul li a{
+    padding: 10px;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.menu {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 10px 10px;
+}
+.lista li a {
+    padding: 8px;
+}
+
+.intro {
+    background-image: url(images/beautiful-outdoor-nature-with-coconut-leaf-with-sunrise-sunset-time.jpg);
+    height: 670px;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.texto-intro {
+    color: white;
+    background-color: #000a;
+    border-radius: 10px;
+}
+
+.botao {
+    padding: 10px 20px;
+    background-color: #fe5f55;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    height: fit-content;
+}
+.botao:hover {
+    background-color: #ed8975;
+    color: white;
+}
+
+.botao-secundario {
+    padding: 10px 20px;
+    background-color: #696969;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    height: fit-content;
+}
+.botao-secundario:hover {
+    background-color: #ed8975;
+    color: white;
+}
+
+/* main */
+.faixa {
+    width: 50px;
+    height: 2px;
+    display: block;
+    background-color: black;
+}
+
+.info-suite td {
+    font-weight: bold;
+}
+
+.paisagem {
+    background-image: url(images/piscina.jpg);
+    background-attachment: fixed;
+    height: 400px;
+    background-position: bottom;
+}
+
+iframe {
+    width: 100%;
+}
+
+.item-servicos img {
+    height: 300px;
+}
+
+/* swiper */
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+form {
+    background-color: #c6c6c6;
+    border-radius: 10px;
+}
+
+.input-text {
+    width: 100%;
+}
+
+.input-text input, .input-text textarea, select {
+    width: 80%;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.checking {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+}
+
+footer {
+    background-color: #ff9100;
+    font-weight: 500;
+}
+
+footer a {
+    font-weight: 500;
+}
+
+.container-info {
+    height: 100vh;
+}
+
+.form-info {
+    width: 30%;
+    z-index: 5;
+}
+
+.erro {
+    color: red;
+}
+
+.btnExcluir {
+    cursor: pointer;
+}

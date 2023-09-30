@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://kit.fontawesome.com/5e0ee57ea4.js" crossorigin="anonymous"></script>
+    <script src="verifica.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Grand Sierra Resort</title>
+</head>
+
+<body>
+    <header class="header-index">
+        <div class="menu container-fluid d-flex justify-content-around align-items-center">
+            <a href="#" class="logo navbar-brand"><img src="images/logo-resort.svg" alt="logo"
+                    class="img-fluid rounded"></a>
+            <ul class="align-items-center lista d-flex list-unstyled container pt-2">
+                <li><a href="#suites">Suítes</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Mais
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#propositos">Propósitos</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a href="#feedbacks">Feedbacks</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a href="#sobre">Sobre nós</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a href="#mapa">Localização</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a href="#form">Dúvidas?</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center gap-5 h-50">
+                <a href="login.html" class="botao d-flex gap-2">
+                    <i class="fa-solid fa-user"></i>
+                    <p class="m-0">Login</p>
+                </a>
+                <a href="cadastro.html" class="botao d-flex gap-1">
+                    <p class="m-0">Registrar</p>
+                </a>
+                <a href="reserva.html" class="botao d-flex gap-1">
+                    <p class="m-0">Reservar</p>
+                </a>
+                <a href="/Hospedes/criar" class="botao d-flex gap-1">
+                    <p class="m-0">Restrito</p>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div>
+        <%- body %>
+    </div>
+    <footer class="py-5" id="form">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center">
+                <div class="links row w-100 justify-content-between">
+                    <div class="info-hotel col-4">
+                        <h5>Grand Sierra</h5>
+                        <p>Somos um hotel spa de luxo com a melhor localização</p>
+                    </div>
+                    <div class="links-footer col-5 row">
+                        <div class="col-4">
+                            <a href="#sobre" class="d-block">Sobre</a>
+                            <a href="#suites" class="d-block">Suítes</a>
+                            <a href="#servicos" class="d-block">Serviços</a>
+                        </div>
+                        <div class="col-4">
+                            <a href="#beneficios" class="d-block">Benefícios</a>
+                            <a href="#galeria" class="d-block">Galeria</a>
+                            <a href="#propositos" class="d-block">Propósitos</a>
+                        </div>
+                        <div class="col-4">
+                            <a href="#feedbacks" class="d-block">Feedbacks</a>
+                            <a href="#mapa" class="d-block">Localização</a>
+                            <a href="#form" class="d-block">Dúvidas?</a>
+                        </div>
+                    </div>
+                    <div class="redes-footer col-3">
+                        <h5>Siga nossas redes</h5>
+                        <a href="#"><i class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                        <a href="#"><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                        <a href="#"><i class="fa-brands fa-square-youtube fa-2xl"></i></a>
+                    </div>
+                </div>
+                <div class="direitos d-flex justify-content-between w-100 pt-5">
+                    <p>© Criado por aTag</p>
+                    <p>Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            }
+        });
+
+        var swiper2 = new Swiper(".mySwiper-feedback", {
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: true,
+            },
+        });
+    </script>
+    <script>
+        document.getElementById('form').addEventListener('submit', mascaraEmail);
+    </script>
+</body>
+</html>
