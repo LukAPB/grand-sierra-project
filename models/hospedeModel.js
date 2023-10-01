@@ -4,109 +4,102 @@ const conexao = new Database();
 
 class HospedeModel {
 
-    #usuarioId;
-    #usuarioNome;
-    #usuarioEmail;
-    #usuarioSenha;
-    #usuarioAtivo;
-    #perfilId;
+    #hospedeId;
+    #hospedeNome;
+    #hospedeData;
+    #hospedeCEP;
+    #hospedeCPF;
+ 
 
-    get usuarioId() { 
-        return this.#usuarioId;
+    get hospedeId() { 
+        return this.#hospedeId;
     }
 
-    set usuarioId(usuarioId) {
-        this.#usuarioId = usuarioId;
+    set hospedeId(hospedeId) {
+        this.#hospedeId = hospedeId;
     }
 
-    get usuarioNome() {
-        return this.#usuarioNome;
+    get hospedeNome() {
+        return this.#hospedeNome;
     }
 
-    set usuarioNome(usuarioNome) {
-        this.#usuarioNome = usuarioNome;
+    set hospedeNome(hospedeNome) {
+        this.#hospedeNome = hospedeNome;
     }
 
-    get usuarioEmail() {
-        return this.#usuarioEmail;
+    get hospedeData() {
+        return this.#hospedeData;
     }
 
-    set usuarioEmail(usuarioEmail){
-        this.#usuarioEmail = usuarioEmail;
+    set hospedeData(hospedeData){
+        this.#hospedeData = hospedeData;
     }
 
-    get usuarioSenha() {
-        return this.#usuarioSenha;
+    get hospedeCEP() {
+        return this.#hospedeCEP;
     }
 
-    set usuarioSenha(usuarioSenha) {
-        this.#usuarioSenha = usuarioSenha;
+    set hospedeCEP(hospedeCEP) {
+        this.#hospedeCEP = hospedeCEP;
     }
 
-    get usuarioAtivo(){
-        return this.#usuarioAtivo;
+    get hospedeCPF(){
+        return this.#hospedeCPF;
     }
 
-    set usuarioAtivo(usuarioAtivo) {
-        this.#usuarioAtivo = usuarioAtivo;
+    set hospedeCPF(hospedeCPF) {
+        this.#hospedeCPF = hospedeCPF;
     }
 
-    get perfilId() {
-        return this.#perfilId;
+
+
+    constructor(hospedeId, hospedeNome, hospedeData, hospedeCEP, hospedeCPF) {
+        this.#hospedeId = hospedeId;
+        this.#hospedeNome = hospedeNome;
+        this.#hospedeData = hospedeData;
+        this.#hospedeCEP = hospedeCEP;
+        this.#hospedeCPF = hospedeCPF;
+        
     }
 
-    set perfilId(perfilId) {
-        this.#perfilId = perfilId;
-    }
-
-    constructor(usuarioId, usuarioNome, usuarioEmail, usuarioSenha, usuarioAtivo, perfilId) {
-        this.#usuarioId = usuarioId;
-        this.#usuarioNome = usuarioNome;
-        this.#usuarioEmail = usuarioEmail;
-        this.#usuarioSenha = usuarioSenha;
-        this.#usuarioAtivo = usuarioAtivo;
-        this.#perfilId = perfilId;
-    }
-
-    async buscarUsuario(id){
-        let sql = "select * from tb_usuario where usu_id = ?"
+    async buscarhospede(id){
+        let sql = "select * from tb_hospede where usu_id = ?"
         let valores = [id];
 
         let rows = await conexao.ExecutaComando(sql, valores);
         if(rows.length > 0){
-            return new UsuarioModel(rows[0]["usu_id"], rows[0]["usu_nome"], rows[0]["usu_email"], rows[0]["usu_senha"], rows[0]["usu_ativo"],
-            rows[0]["per_id"]);
+            return new HospedeModel(rows[0]["hos_id"], rows[0]["hos_nome"], rows[0]["hos_data"], rows[0]["hos_CEP"], rows[0]["usu_CPF"]);
         }
         return null;
     }
 
-    async listarUsuarios() {
-        let sql = 'select * from tb_usuario';
+    async listarhospedes() {
+        let sql = 'select * from tb_hospede';
         let rows = await conexao.ExecutaComando(sql);
 
-        let listaUsuarios = [];
+        let listahospedes = [];
 
-        for(let i = 0; i<rows.length; i++){
+        for(let i = 0; i< rows. length; i++){
             let row = rows[i];
-            listaUsuarios.push(
-                new UsuarioModel(row['usu_id'], row['usu_nome'], row['usu_email'], row['usu_senha'], row['usu_ativo'], row['per_id'])
+            listahospedes.push(
+                new HospedeModel(row['hos_id'], row['hos_nome'], row['hos_data'], row['hos_CEP'], row['hos_CPF'])
             );
         }
 
-        return listaUsuarios;
+        return listahospedes;
     }
 
-    async gravarUsuario() {
+    async gravarhospede() {
         let result = false;
-        if(this.#usuarioId == 0){
-            let sql = "insert into tb_usuario (usu_nome, usu_email, usu_senha, usu_ativo, per_id) values (?, ?, ?, ?, ?)";
-            let valores = [this.#usuarioNome, this.#usuarioEmail, this.#usuarioSenha, this.#usuarioAtivo, this.#perfilId];
+        if(this.#hospedeId == 0){
+            let sql = "insert into tb_hospede (hos_nome, hos_data, hos_CEP, hos_CPF) values (?, ?, ?, ?)";
+            let valores = [this.#hospedeNome, this.#hospedeData, this.#hospedeCEP, this.#hospedeCPF];
     
             result = await conexao.ExecutaComandoNonQuery(sql, valores);
         }
         else{
-            let sql = "update tb_usuario set usu_nome = ?, usu_email = ?, usu_senha = ?, usu_ativo = ?, per_id = ? where usu_id = ?";
-            let valores = [this.#usuarioNome, this.#usuarioEmail, this.#usuarioSenha, this.#usuarioAtivo, this.#perfilId, this.#usuarioId];
+            let sql = "update tb_hospede set hos_nome = ?, hos_data = ?, hos_CEP = ?, hos_CPF = ?, where hos_id = ?";
+            let valores = [this.#hospedeNome, this.#hospedeData, this.#hospedeCEP, this.#hospedeCPF, this.#hospedeId];
 
             result = await conexao.ExecutaComandoNonQuery(sql, valores);
         }
@@ -115,9 +108,9 @@ class HospedeModel {
 
     }
 
-    async deletarUsuario(usuarioId) {
-        let sql = "delete from tb_usuario where usu_id = ?"
-        let valores = [usuarioId];
+    async deletarhospede(hospedeId) {
+        let sql = "delete from tb_hospede where hos_id = ?"
+        let valores = [hospedeId];
 
         let result = conexao.ExecutaComandoNonQuery(sql, valores);
 

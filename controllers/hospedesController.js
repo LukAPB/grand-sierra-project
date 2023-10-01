@@ -7,11 +7,11 @@ class HospedesController {
 
     }
 
-    async deletarUsuario(req, res){
+    async deletarhospede(req, res){
         let ok = false;
-        if(req.body.usuarioId != null && req.body.usuarioId > 0){
-            let usuarioModel = new HospedeModel();
-            ok = usuarioModel.deletarUsuario(req.body.usuarioId);
+        if(req.body.hospedeId != null && req.body.hospedeId > 0){
+            let hospedeModel = new HospedeModel();
+            ok = hospedeModel.deletarhospede(req.body.hospedeId);
         }
         res.send({ok: ok})
     }
@@ -24,49 +24,48 @@ class HospedesController {
     }
 
     async alterarView(req, res) {
-        let usuarioModel = new HospedeModel();
+        let hospedeModel = new HospedeModel();
         if(req.params != null && req.params.id != null){
-            let usuarioId = req.params.id;           
-            usuarioModel = await usuarioModel.buscarUsuario(usuarioId);
+            let hospedeId = req.params.id;           
+            hospedeModel = await hospedeModel.buscarhospede(hospedeId);
         }
         let perfilModel = new PerfilModel();
         let listaPerfil = await perfilModel.listar();
-        res.render('Hospedes/alterar', { lista: listaPerfil, usuAlteracao: usuarioModel });
+        res.render('Hospedes/alterar', { lista: listaPerfil, usuAlteracao: hospedeModel });
     }
 
     async listarView(req, res) {
-        let usuario = new HospedeModel();
-        let listaUsuarios = await usuario.listarUsuarios();
-        res.render('Hospedes/listar', { lista: listaUsuarios });
+        let hospede = new HospedeModel();
+        let listahospedes = await hospede.listarhospedes();
+        res.render('Hospedes/listar', { lista: listahospedes });
     }
 
-    async listarUsuarios(req, res){
-        let usuario = new HospedeModel();
-        let listaUsuarios = await usuario.listarUsuarios();
+    async listarhospedes(req, res){
+        let hospede = new HospedeModel();
+        let listahospedes = await hospede.listarhospedes();
 
         let listaUsu = [];
 
-        for(let i = 0; i<listaUsuarios.length; i++){
+        for(let i = 0; i<listahospedes.length; i++){
             listaUsu.push({
-                id: listaUsuarios[i].usuarioId,
-                nome: listaUsuarios[i].usuarioNome,
-                email: listaUsuarios[i].usuarioEmail,
-                ativo: listaUsuarios[i].usuarioAtivo,
-                perfilId: listaUsuarios[i].perfilId
+                id: listahospedes[i].hospedeId,
+                nome: listahospedes[i].hospedeNome,
+                dataNasc: listahospedes[i].hospedeData,
+                hospedeCPF: listahospedes[i].hospedeCPF,
+                hospedeCEP: listahospedes[i].hospedeCEP
             })
         }
 
         res.send({ lista: listaUsu, ok: true })
     }
 
-    async alterarUsuario(req, res){
+    async alterarhospede(req, res){
         let ok = false;
         if(req.body != null) {
-            if(req.body.id > 0 && req.body.nome != null && req.body.email != null && req.body.senha != null && req.body.confSenha != null && req.body.perfilId != null && req.body.ativo != null) {
-                if(req.body.senha == req.body.confSenha && req.body.perfilId > 0) {
-                    let ativo = req.body.ativo ? "S" : "N";
-                    let usuario = new UsuarioModel(req.body.id, req.body.nome, req.body.email, req.body.senha, ativo, req.body.perfilId);
-                    ok = usuario.gravarUsuario();
+            if(req.body.id > 0 && req.body.nome != null && req.body.dataNasc != null  && req.body.hospedeCEP != null && req.body.hospedeCPF != null) {
+                if(req.body.hospedeCEP > 0) {
+                    let hospede = new hospedeModel(req.body.id, req.body.nome, req.body.dataNasc, req.body.hospedeCPF, req.body.hospedeCEP);
+                    ok = hospede.gravarhospede();
                 }
             }
         }
@@ -74,15 +73,14 @@ class HospedesController {
         res.send({ ok: ok})
     }
 
-    async gravarUsuario(req, res) {
+    async gravarhospede(req, res) {
 
         let ok = false;
         if(req.body != null) {
-            if(req.body.nome != null && req.body.email != null && req.body.senha != null && req.body.confSenha != null && req.body.perfilId != null && req.body.ativo != null) {
-                if(req.body.senha == req.body.confSenha && req.body.perfilId > 0) {
-                    let ativo = req.body.ativo ? "S" : "N";
-                    let usuario = new UsuarioModel(0, req.body.nome, req.body.email, req.body.senha, ativo, req.body.perfilId);
-                    ok = usuario.gravarUsuario();
+            if(req.body.nome != null && req.body.dataNasc != null &&  req.body.hospedeCEP != null && req.body.hospedeCPF != null) {
+                if( req.body.hospedeCEP > 0) {
+                    let hospede = new hospedeModel(0, req.body.nome, req.body.dataNasc,  req.body.hospedeCPF, req.body.hospedeCEP);
+                    ok = hospede.gravarhospede();
                 }
             }
         }

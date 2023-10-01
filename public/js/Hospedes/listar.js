@@ -51,9 +51,9 @@ function carregarHospedes() {
                 html += `<tr>
                             <td>${r.lista[i].id}</td>
                             <td>${r.lista[i].nome}</td>                           
-                            <td>${r.lista[i].email}</td>
-                            <td>${r.lista[i].ativo}</td>
-                            <td>${r.lista[i].perfilId}</td>
+                            <td>${r.lista[i].dataNasc}</td>
+                            <td>${r.lista[i].hospedeCPF}</td>
+                            <td>${r.lista[i].hospedeCEP}</td>
                         </tr>`
             }
 

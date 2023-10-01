@@ -33,9 +33,9 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nome</th>
-                                <th>Email</th>
-                                <th>Ativo</th>
-                                <th>Perfil</th>
+                                <th>DataNasc</th>
+                                <th>CEP</th>
+                                <th>CPF</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -43,25 +43,25 @@
                             <% lista.forEach(function(value, index) { %>
                                 <tr>
                                     <td>
-                                        <%= value.usuarioId %>
+                                        <%= value.hospedeId %>
                                     </td>
                                     <td>
-                                        <%= value.usuarioNome %>
+                                        <%= value.hospedeNome %>
                                     </td>
                                     <td>
-                                        <%= value.usuarioEmail %>
+                                        <%= value.hospedeData %>
                                     </td>
                                     <td>
-                                        <%= value.usuarioAtivo %>
+                                        <%= value.hospedeCPF %>
                                     </td>
                                     <td>
-                                        <%= value.perfilId %>
+                                        <%= value.hospedeCEP %>
                                     </td>
                                     <td>
                                         <div>
-                                            <button data-id="<%= value.usuarioId %>" title="Excluir"
+                                            <button data-id="<%= value.hospedeId %>" title="Excluir"
                                                 class="btn btn-danger btnExcluir"><i class="fas fa-trash"></i></button>
-                                            <a href="/Hospedes/alterar/<%= value.usuarioId %>" title="Editar"
+                                            <a href="/Hospedes/alterar/<%= value.hospedeId %>" title="Editar"
                                                 class="btn btn-primary">
                                                 <i class="fas fa-pen"></i>
                                             </a>
