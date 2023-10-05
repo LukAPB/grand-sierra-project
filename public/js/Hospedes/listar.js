@@ -39,7 +39,7 @@ function excluirHospede() {
 }
 
 function carregarHospedes() {
-    fetch('/hospedes/listar')
+    fetch('/Hospedes/listar')
     .then(r => {
         return r.json();
     })
