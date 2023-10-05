@@ -114,7 +114,7 @@ class HospedeModel {
             result = await conexao.ExecutaComandoNonQuery(sql, valores);
         }
         else{
-            let sql = "update tb_hospede set hos_nome = ?, hos_data = ?, hos_CEP = ?, hos_CPF = ?, hos_Checkin = ?, hos_Checkout = ?, where hos_id = ?";
+            let sql = "update tb_hospede set hos_nome = ?, hos_data = ?, hos_CEP = ?, hos_CPF = ?, hos_Checkin = ?, hos_Checkout = ? where hos_id = ?";
             let valores = [this.#hospedeNome, this.#hospedeData, this.#hospedeCEP, this.#hospedeCPF, this.#hospedeCheckin, this.#hospedeCheckout, this.#hospedeId];
 
             result = await conexao.ExecutaComandoNonQuery(sql, valores);

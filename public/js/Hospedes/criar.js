@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 
-    var btnGravar = document.getElementById("btnGravarHospedes");
+    var btnGravar = document.getElementById("btnGravarHospede");
 
 
     btnGravar.addEventListener("click", function() {
