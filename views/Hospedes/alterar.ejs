@@ -43,36 +43,26 @@ SS<style>
                     <input value="<%= usuAlteracao.hospedeData %>" type="email" class="form-control"
                         id="inputEmail">
                 </div>
-
-                <div class="form-group">
-
-                    <div class="form-group">
-                        <label for="inputSenha">Senha</label>
-                        <input value="<%= usuAlteracao.hospedeSenha %>" type="password" class="form-control"
-                            id="inputSenha">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputConfSenha">Confirmar senha</label>
-                        <input value="<%= usuAlteracao.hospedeSenha %>" type="password" class="form-control"
-                            id="inputConfSenha">
-                    </div>
+                <div class="d-flex flex-column input-text">
+                    <label for="nasc">Data de nascimento*</label>
+                    <input type="date" name="nasc" id="nasc" class="w-100">
+                </div>
+                <div class="d-flex flex-column input-text">
+                    <label for="CPF">CPF*</label>
+                    <input type="text" name="CPF" id="CPF" maxlength="14" oninput="mascaraCPF()"  class="w-100">
+                </div>
+                <div class="d-flex flex-column input-text w-100">
+                    <label for="CEP">CEP*</label>
+                    <input type="text" name="CEP" id="CEP" maxlength="9" oninput="mascaraCEP()" class="w-100">
 
                 </div>
-                <div class="form-group">
-                    <label for="selPerfil">Perfil</label>
-                    <select class="form-control" id="selPerfil">
-                        <option value="0">--Selecione--</option>
-                        <% for(let i=0; i < lista.length; i++) { if(lista[i].perfilId==usuAlteracao.perfilId) { %>
-                            <option selected value="<%= lista[i].perfilId %>">
-                                <%= lista[i].perfilNome %>
-                            </option>
-                            <% } else { %>
-                                <option value="<%= lista[i].perfilId %>">
-                                    <%= lista[i].perfilNome %>
-                                </option>
-                                <% } %>
-                                    <% } %>
-                    </select>
+                <div class="d-flex flex-column input-text w-100">
+                    <label for="checkin">Check-in*</label>
+                    <input type="date" name="checkin" id="checkin" class="w-100">
+                </div>
+                <div class="d-flex flex-column input-text">
+                    <label for="checkout">Checkout*</label>
+                    <input type="date" name="checkout" id="checkout" class="w-100">
                 </div>
                 <button type="button" id="btnAlterarHospede" class="botao">Gravar</button>
                 <a class="botao-secundario" href="/Hospedes">Voltar</a>
