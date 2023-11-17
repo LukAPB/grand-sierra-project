@@ -6,34 +6,29 @@
 
 <script src="/js/Hospedes/criar.js"></script>
 
-<h1>Cadastrar novo hóspede</h1>
-
-<div class="container-fluid">
-    <div class="row" style="margin-top:20px;">
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-            <div class="position-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link botao" href="/Hospedes/criar">
-                            Cadastrar Hóspede
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link botao my-3" href="/Hospedes/listar">
-                            Listar Hóspedes
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link botao" href="/Hospedes/alterar">
-                            Alterar Hóspede
-                        </a>
-                    </li>
-                </ul>
-            </div>
+<div class="container-fluid mt-5 py-5">
+    <div class="row">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar px-0">
+            <ul class="nav flex-column px-2">
+                <li class="nav-item">
+                    <a class="nav-link botao" href="/Hospedes/criar">
+                        Cadastrar Hóspede
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link botao my-3" href="/Hospedes/listar">
+                        Listar Hóspedes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link botao" href="/Hospedes/alterar">
+                        Alterar Hóspede
+                    </a>
+                </li>
+            </ul>
         </nav>
         <div class="col-md-9 col-lg-10">
-            <form class="d-flex flex-column align-items-center justify-content-center form-info p-2 w-100"
-                id="form">
+            <form class="d-flex flex-column align-items-center justify-content-center form-info p-2 w-100" id="form">
                 <div class="d-flex flex-column align-items-center input-text">
                     <label for="Nome">Nome completo*</label>
                     <input type="text" name="Nome" id="Nome">
@@ -61,8 +56,8 @@
                 </div>
                 <span id="erro"></span>
                 <div class="d-flex align-items-center gap-3">
-                    <button class="botao my-5" id="btnGravarHospede">Enviar</button>
                     <a href="/Hospedes" class="botao-secundario text-center">Voltar</a>
+                    <button class="botao my-5" id="btnGravarHospede">Enviar</button>
                 </div>
             </form>
         </div>

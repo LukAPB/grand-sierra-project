@@ -4,6 +4,7 @@ const expressLayouts = require('express-ejs-layouts');
 const HomeRoute = require('./routes/homeRoute');
 const LoginRoute = require('./routes/loginRoute');
 const HospedesRoute = require('./routes/hospedesRoute');
+const NfRoute = require('./routes/nfRoute');
 
 const app = express();
 
@@ -35,6 +36,9 @@ let loginRota = new LoginRoute();
 app.use('/login', loginRota.router);
 let hospedeRota = new HospedesRoute();
 app.use('/Hospedes', hospedeRota.router);
+let nfRota = new NfRoute();
+app.use('/NF', nfRota.router);
+
 
 
 //ponto de inicio do nosso servidor web
