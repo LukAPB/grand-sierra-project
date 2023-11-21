@@ -15,7 +15,7 @@ class NfRoute {
 
         this.#router = express.Router();
         let ctrl = new NfController();
-        this.#router.get('/gerar', ctrl.NfView);
+        this.#router.get('/notafiscal', ctrl.NfView);
     }
 }
 

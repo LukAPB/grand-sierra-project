@@ -5,7 +5,7 @@ class NfController {
     }
     
     NfView(req, res){
-        res.render('NF/gerar', { });
+        res.render('NF/notafiscal', { layout: 'layoutInterna' });
     }
 
 }
