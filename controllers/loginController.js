@@ -5,7 +5,7 @@ class LoginController {
     }
 
     loginView(req, res) {
-        res.render('login/index', { layout: 'login/index' });
+        res.render('login/login', { layout: 'login/login' });
     }
 
     autenticarUsuario(req, res) {
@@ -14,7 +14,7 @@ class LoginController {
             res.redirect('/');
         }
         else {
-            res.render('login/index', { msgErro: "Usuário ou senha inválidos", layout: 'login/index' })
+            res.render('login/login', { msgErro: "Usuário ou senha inválidos", layout: 'login/login' })
         }
     }
 }
