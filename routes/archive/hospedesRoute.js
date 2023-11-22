@@ -1,5 +1,5 @@
 const express = require('express');
-const HospedesController = require('../controllers/hospedesController');
+const HospedesController = require('../../controllers/archive/hospedesController');
 
 class HospedesRoute {
 

@@ -1,5 +1,5 @@
-const PerfilModel = require("../models/perfilModel");
-const HospedeModel = require("../models/hospedeModel");
+const PerfilModel = require("../../models/archive/perfilModel");
+const HospedeModel = require("../../models/archive/hospedeModel");
 
 class HospedesController {
 
