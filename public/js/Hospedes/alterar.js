@@ -58,7 +58,7 @@ function alterarHospede() {
             hospedeCheckout: checkout.value
         };
 
-        fetch('/hospedes/alterar', { 
+        fetch('archive/Hospedes/alterar', { 
             method: "POST",
             headers: {
                 "Content-type": "application/json"

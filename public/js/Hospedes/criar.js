@@ -58,7 +58,7 @@ function gravarHospede() {
             hospedeCheckout: checkout.value
         };
 
-        fetch('/hospedes/criar', { 
+        fetch('archive/Hospedes/criar', { 
             method: "POST",
             headers: {
                 "Content-type": "application/json"

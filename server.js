@@ -38,7 +38,7 @@ app.use('/', homeRota.router)
 let loginRota = new LoginRoute();
 app.use('/login', loginRota.router);
 let hospedeRota = new HospedesRoute();
-app.use('/Hospedes', hospedeRota.router);
+app.use('/archive/Hospedes', hospedeRota.router);
 let nfRota = new NfRoute();
 app.use('/NF', nfRota.router);
 let pessoasRota = new PessoasRoute();

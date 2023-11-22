@@ -16,7 +16,7 @@ function excluirHospede() {
         var data = {
             usuarioId: id
         }
-        fetch("/hospedes/excluir", {
+        fetch("archive/Hospedes/excluir", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -39,7 +39,7 @@ function excluirHospede() {
 }
 
 function carregarHospedes() {
-    fetch('/Hospedes/listar')
+    fetch('archive/Hospedes/listar')
     .then(r => {
         return r.json();
     })
