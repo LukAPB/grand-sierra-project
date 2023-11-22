@@ -6,6 +6,7 @@ const LoginRoute = require('./routes/loginRoute');
 const HospedesRoute = require('./routes/hospedesRoute');
 const PessoasRoute = require('./routes/pessoasRoute');
 const NfRoute = require('./routes/nfRoute');
+const InternaRoute = require('./routes/internaRoute')
 
 const app = express();
 
@@ -41,6 +42,8 @@ let nfRota = new NfRoute();
 app.use('/NF', nfRota.router);
 let pessoasRota = new PessoasRoute();
 app.use('/Pessoas', pessoasRota.router);
+let internaRota = new InternaRoute();
+app.use('/interna', internaRota.router);
 
 
 
