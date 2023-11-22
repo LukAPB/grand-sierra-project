@@ -16,6 +16,8 @@ class ProdutoRoute {
         this.#router = express.Router();
         let ctrl = new produtoController();
         this.#router.get('/', ctrl.listarView);
+        this.#router.get('/cadastrar', ctrl.cadastrarView);
+        this.#router.post('/cadastrar', ctrl.cadastrarProduto);
     }
 }
 

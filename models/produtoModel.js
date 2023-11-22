@@ -6,7 +6,7 @@ class ProdutoModel {
     #prodCodigoBarras;
     #prodNome;
     #prodEstoque;
-    #prodPreco;
+    #prodPreco; 
 
     get prodCodigoBarras() { return this.#prodCodigoBarras; } set prodCodigoBarras(prodCodigoBarras) {this.#prodCodigoBarras = prodCodigoBarras;}
     get prodNome() { return this.#prodNome; } set prodNome(prodNome) {this.#prodNome = prodNome;}
@@ -39,6 +39,23 @@ class ProdutoModel {
         }
 
         return listaRetorno;
+    }
+
+    async gravar(cadastro){
+        if(cadastro == 0){
+            let sql = "insert into Produto (prod_codBarras, prod_nome, prod_estoque, prod_preco) values (?, ?, ?, ?)";
+
+            let valores = [this.#prodCodigoBarras, this.#prodNome, this.#prodEstoque, this.#prodPreco];
+
+            return await conexao.ExecutaComandoNonQuery(sql, valores);
+        }
+        else{
+            
+            let sql = "update Produto set prod_nome = ?, prod_estoque = ?, prod_preco = ? where prodCodigoBarras = ?";
+            let valores = [this.#prodNome, this.#prodEstoque, this.#prodPreco, this.#prodCodigoBarras, ];
+
+            return await conexao.ExecutaComandoNonQuery(sql, valores) > 0;
+        }
     }
 }
 
