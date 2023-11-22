@@ -40,10 +40,10 @@ function gravarPessoa() {
         })
         .then(r=> {
             if(r.ok) {
-                alert("Produto cadastrado!");
+                alert("Pessoa cadastrada!");
             }
             else{
-                alert("Erro ao cadastrar produto");
+                alert("Erro ao cadastrar pessoa");
             }
         })
         .catch(e => {
