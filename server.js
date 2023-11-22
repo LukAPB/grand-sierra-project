@@ -23,7 +23,7 @@ app.set('views', './views');
 
 //define um title generico para todas as nossas páginas
 // a variavel title será chamada no nosso arquivo layout na tag title
-app.locals.title = "Programação FullStack 1";
+app.locals.title = "Grand Sierra Resort";
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
