@@ -27,5 +27,4 @@ class PessoasModel{
     }
 }
 
-
 module.exports = PessoasModel;
