@@ -1,5 +1,7 @@
 import {PessoasModel} from './pessoasModel.js'
 
+const Database = require('../utils/database');
+
 const conexao = new Database();
 
 class PessoaJuridicaModel extends PessoasModel {
