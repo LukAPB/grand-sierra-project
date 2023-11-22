@@ -4,6 +4,7 @@ const expressLayouts = require('express-ejs-layouts');
 const HomeRoute = require('./routes/homeRoute');
 const LoginRoute = require('./routes/loginRoute');
 const HospedesRoute = require('./routes/hospedesRoute');
+const PessoasRoute = require('./routes/pessoasRoute');
 const NfRoute = require('./routes/nfRoute');
 
 const app = express();
@@ -38,6 +39,8 @@ let hospedeRota = new HospedesRoute();
 app.use('/Hospedes', hospedeRota.router);
 let nfRota = new NfRoute();
 app.use('/NF', nfRota.router);
+let pessoasRota = new PessoasRoute();
+app.use('/Pessoas', pessoasRota.router);
 
 
 

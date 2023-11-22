@@ -20,7 +20,7 @@ class HospedesController {
         //chame o método que lista os perfis
         let perfilModel = new PerfilModel();
         let listaPerfil = await perfilModel.listar();
-        res.render('Hospedes/criar', { lista: listaPerfil });
+        res.render('Hospedes/criar', { lista: listaPerfil, layout: 'layoutInterna' });
     }
 
     async alterarView(req, res) {
@@ -31,13 +31,13 @@ class HospedesController {
         }
         let perfilModel = new PerfilModel();
         let listaPerfil = await perfilModel.listar();
-        res.render('Hospedes/alterar', { lista: listaPerfil, usuAlteracao: hospedeModel });
+        res.render('Hospedes/alterar', { lista: listaPerfil, usuAlteracao: hospedeModel, layout: 'layoutInterna' });
     }
 
     async listarView(req, res) {
         let hospede = new HospedeModel();
         let listahospedes = await hospede.listarhospedes();
-        res.render('Hospedes/listar', { lista: listahospedes });
+        res.render('Hospedes/listar', { lista: listahospedes, layout: 'layoutInterna' });
     }
 
     async listarhospedes(req, res){
