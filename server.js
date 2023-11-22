@@ -6,7 +6,8 @@ const LoginRoute = require('./routes/loginRoute');
 const HospedesRoute = require('./routes/hospedesRoute');
 const PessoasRoute = require('./routes/pessoasRoute');
 const NfRoute = require('./routes/nfRoute');
-const InternaRoute = require('./routes/internaRoute')
+const InternaRoute = require('./routes/internaRoute');
+const ProdutoRoute = require('./routes/produtoRoute');
 
 const app = express();
 
@@ -44,6 +45,8 @@ let pessoasRota = new PessoasRoute();
 app.use('/Pessoas', pessoasRota.router);
 let internaRota = new InternaRoute();
 app.use('/interna', internaRota.router);
+let produtoRota = new ProdutoRoute();
+app.use('/Produto', produtoRota.router);
 
 
 
