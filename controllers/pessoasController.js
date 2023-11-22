@@ -1,11 +1,16 @@
+const PessoaJuridicaModel = require("../models/pessoaJuridicaModel")
+
 class pessoasController {
 
     constructor() {
 
     }
     
-    listarView(req, res){
-        res.render('Pessoas/listar', { layout: 'layoutInterna' });
+    async listarView(req, res){
+        let pessoas = new PessoaJuridicaModel();
+        let lista = await pessoas.listarPessoas();
+
+        res.render('Pessoas/listar', { lista: lista, layout: 'layoutInterna' });
     }
 
 }

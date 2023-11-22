@@ -93,30 +93,26 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <% lista.map(function(value, index) { %>
                     <tr>
                       <td>
                         <div class="d-flex px-2">
                           <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
-                            <img src="/img/small-logos/logo-spotify.svg" class="w-80" alt="spotify">
+                            <!-- <img src="/img/small-logos/logo-spotify.svg" class="w-80" alt="spotify"> -->
                           </div>
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Spotify</h6>
+                            <h6 class="mb-0 text-sm">Pessoa Jurídica</h6>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-sm font-weight-normal mb-0">$2,500</p>
+                        <span class="text-sm font-weight-normal"><%= value.pessoaNome %></span>
                       </td>
                       <td>
-                        <span class="text-sm font-weight-normal">Wed 3:00pm</span>
+                        <span class="text-sm font-weight-normal"><%= value.pessoaEmail %></span>
                       </td>
                       <td>
-                        <span class="badge badge-sm border border-success text-success bg-success">
-                          <svg width="9" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="me-1">
-                            <path d="M1 4.42857L3.28571 6.71429L9 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                          Paid
-                        </span>
+                        <span class="text-sm font-weight-normal"><%= value.pjCNPJ %></span>
                       </td>
                       <td class="align-middle">
                         <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Edit user">
@@ -126,6 +122,7 @@
                         </a>
                       </td>
                     </tr>
+                    <% }) %>
                   </tbody>
                 </table>
               </div>
