@@ -17,6 +17,7 @@ class PessoasRoute {
         let ctrl = new pessoasController();
         this.#router.get('/', ctrl.listarView);
         this.#router.get('/cadastrar', ctrl.cadastrarView);
+        this.#router.post('/cadastrar', ctrl.cadastrarPessoas);
     }
 }
 

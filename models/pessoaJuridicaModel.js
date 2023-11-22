@@ -19,7 +19,7 @@ class PessoaJuridicaModel extends PessoasModel {
 
     async listarPessoas(){
 
-        let sql = 'select * from Pessoas p inner join PessoaJuridica pj on p.pessoa_id = pj.pessoa_id';
+        let sql = 'select * from Pessoas';
 
         var rows = await conexao.ExecutaComando(sql);
 
@@ -36,6 +36,23 @@ class PessoaJuridicaModel extends PessoasModel {
         }
 
         return listaRetorno;
+    }
+
+    async gravar(){
+        if(this.#pessoaId == 0){
+            let sql = "insert into Pessoas (nome, email, logradouro, CEP, numTelefone, pj_cnpj) values (?, ?, ?, ?, ?, ?)";
+
+            let valores = [super.pessoaNome, super.pessoaEmail, super.pessoaLogradouro, super.pessoaCEP, super.pessoaNumTelefone, this.#pjCNPJ];
+
+            return await conexao.ExecutaComandoNonQuery(sql, valores);
+        }
+        else{
+            
+            let sql = "update Pessoas set nome = ?, email = ?, logradouro = ?, CEP = ?, numTelefone = ?, pj_cnpj = ? where pessoa_id = ?";
+            let valores = [super.pessoaNome, super.pessoaEmail, super.pessoaLogradouro, super.pessoaCEP, super.pessoaNumTelefone, this.#pjCNPJ, this.#pessoaId];
+
+            return await conexao.ExecutaComandoNonQuery(sql, valores) > 0;
+        }
     }
 }
 
