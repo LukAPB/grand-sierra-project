@@ -16,6 +16,7 @@ class PessoasRoute {
         this.#router = express.Router();
         let ctrl = new pessoasController();
         this.#router.get('/', ctrl.listarView);
+        this.#router.get('/cadastrar', ctrl.cadastrarView);
     }
 }
 

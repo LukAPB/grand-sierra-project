@@ -13,5 +13,9 @@ class pessoasController {
         res.render('Pessoas/listar', { lista: lista, layout: 'layoutInterna' });
     }
 
+    async cadastrarView(req, res) {
+        res.render('Pessoas/cadastrar', {layout: 'layoutInterna' })
+    }    
+
 }
 module.exports = pessoasController;
