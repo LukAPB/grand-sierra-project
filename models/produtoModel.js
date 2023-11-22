@@ -20,6 +20,26 @@ class ProdutoModel {
         this.#prodEstoque = prodEstoque;
         this.#prodPreco = prodPreco;
     }
+
+    async listarProdutos(){
+
+        let sql = 'select * from Produto';
+
+        var rows = await conexao.ExecutaComando(sql);
+
+        let listaRetorno = [];
+
+        if(rows.length > 0){
+            for(let i=0; i<rows.length; i++){
+                var row = rows[i];
+
+                listaRetorno.push(new ProdutoModel(row['prod_codBarras'], 
+                row['prod_nome'], row['prod_estoque'], row['prod_preco']));
+            }
+        }
+
+        return listaRetorno;
+    }
 }
 
 module.exports = ProdutoModel;

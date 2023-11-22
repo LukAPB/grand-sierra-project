@@ -1,11 +1,16 @@
+const ProdutoModel = require("../models/produtoModel");
+
 class produtoController {
 
     constructor() {
 
     }
     
-    listarView(req, res){
-        res.render('Produto/listar', { layout: 'layoutInterna' });
+    async listarView(req, res){
+        let produto = new ProdutoModel();
+        let lista = await produto.listarProdutos();
+
+        res.render('Produto/listar', { lista: lista, layout: 'layoutInterna' });
     }
 
 }
