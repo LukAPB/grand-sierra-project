@@ -18,6 +18,7 @@ class PessoasRoute {
         this.#router.get('/', ctrl.listarView);
         this.#router.get('/cadastrar', ctrl.cadastrarView);
         this.#router.post('/cadastrar', ctrl.cadastrarPessoas);
+        this.#router.post('/verificaCNPJ', ctrl.verificaCNPJ);
     }
 }
 

@@ -1,3 +1,5 @@
+    <script src="/js/NF/notafiscal.js"></script>
+
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg mx-5 px-0 shadow-none rounded" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-2">
@@ -60,14 +62,6 @@
                   <p class="text-sm">Insira abaixo as informações constantes na nota fiscal</p>
                 </div>
                 <div class="ms-auto d-flex">
-                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center me-2">
-                    <span class="btn-inner--icon">
-                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="d-block me-2">
-                        <path d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z" />
-                      </svg>
-                    </span>
-                    <span class="btn-inner--text">Cadastrar Pessoa Jurídica</span>
-                  </button>
                 </div>
               </div>
             </div>
@@ -82,28 +76,28 @@
                   </div>
                   <div class="col-md-8">
                     <div class="form-group">
-                      <label for="">Razão Social</label>
-                      <input type="text" placeholder="" class="form-control" disabled/>
+                      <label for="nome">Razão Social</label>
+                      <input type="text" placeholder="" name="nome" id="nome" class="form-control" disabled/>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="">Nº da Nota</label>
-                      <input type="text" placeholder="" class="form-control" disabled/>
+                      <label for="notaNum">Nº da Nota</label>
+                      <input type="text" placeholder="" name="notaNum" id="notaNum" class="form-control" disabled/>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="">Data da Emissão da Nota</label>
-                      <input type="date" placeholder="" class="form-control" disabled/>
+                      <label for="notaData">Data da Emissão da Nota</label>
+                      <input type="date" placeholder="" name="notaData" id="notaData" class="form-control" disabled/>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="">Valor Total da Nota</label>
-                      <input type="text" placeholder="" class="form-control" disabled/>
+                      <label for="notaValor">Valor Total da Nota</label>
+                      <input type="text" placeholder="" name="notaValor" id="notaValor" class="form-control" disabled/>
                     </div>
                   </div>
                 </div>
@@ -128,7 +122,7 @@
                         <path d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z" />
                       </svg>
                     </span>
-                    <span class="btn-inner--text">Cadastrar produto</span>
+                    <span class="btn-inner--text">Gravar produto da nota</span>
                   </button>
                 </div>
               </div>
@@ -138,8 +132,8 @@
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label for="cnpj">Código de barras</label>
-                      <input type="text" class="form-control" id="cnpj" placeholder="0000000000000" disabled>
+                      <label for="codigoBarras">Código de barras</label>
+                      <input type="text" class="form-control" name="codigoBarras" id="codigoBarras" placeholder="0000000000000" disabled>
                     </div>
                   </div>
                   <div class="col-md-5">
@@ -182,7 +176,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                       </svg>
                     </span>
-                    <span class="btn-inner--text">Gravar Produtos</span>
+                    <span class="btn-inner--text">Finalizar nota fiscal</span>
                   </button>
                 </div>
               </div>

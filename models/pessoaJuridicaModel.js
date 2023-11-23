@@ -54,6 +54,22 @@ class PessoaJuridicaModel extends PessoasModel {
             return await conexao.ExecutaComandoNonQuery(sql, valores) > 0;
         }
     }
-}
 
+    async obterPessoa(id){
+        let sql = "select * from Pessoas where pj_cnpj = ?";
+        let valores = [id];
+
+        let rows = await conexao.ExecutaComando(sql, valores);
+
+        if (rows.length > 0){
+       
+            let pessoa = new PessoaJuridicaModel();
+            pessoa.pessoaId = rows[0]["pessoa_id"];
+            pessoa.pessoaNome = rows[0]["nome"];
+            pessoa.#pjCNPJ = rows[0]["pj_cnpj"];
+
+            return pessoa;
+        }
+    }
+}
 module.exports = PessoaJuridicaModel;

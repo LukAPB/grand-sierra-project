@@ -1,4 +1,4 @@
-const PessoaJuridicaModel = require("../models/pessoaJuridicaModel")
+const PessoaJuridicaModel = require("../models/pessoaJuridicaModel");
 
 class pessoasController {
 
@@ -30,6 +30,25 @@ class pessoasController {
         }
 
         res.send({ ok: ok })
+    }
+
+    async verificaCNPJ(req, res){
+        if(req.body.cnpj != ""){
+            let pessoa = new PessoaJuridicaModel()
+            pessoa = await pessoa.obterPessoa(req.body.cnpj);
+            
+            if (pessoa != null){
+                let pessoaJson = {
+                    pessoaId: pessoa.pessoaId,
+                    pessoaNome: pessoa.pessoaNome,
+                    pjCNPJ: pessoa.pjCNPJ
+                }
+
+                res.send({ok: true, pessoa: pessoaJson});
+            } else {
+                res.send({ok: false, msg: "CNPJ não cadastrado"});
+            }
+        }
     }
 
 }
