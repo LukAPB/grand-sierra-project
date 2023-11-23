@@ -33,27 +33,26 @@
                 <div class="row">
                    <div class="col-md-12">
                         <div class="form-group">
-                            <input type="hidden" id="inputId" value="<%= usuAlteracao.hospedeId %>">
                             <label for="inputNome">Nome</label>
-                            <input value="<%= usuAlteracao.hospedeNome %>" type="text" class="form-control" id="inputNome">
+                            <input value="<%= hosAlteracao.hospedeNome %>" type="text" class="form-control" id="inputNome">
                         </div>
                    </div>
                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="nasc">Data de nascimento</label>
-                            <input type="date" name="nasc" id="nasc" class="form-control">
+                            <input type="date" name="nasc" id="nasc" class="form-control" value="<%= hosAlteracao.hospedeData %>">
                         </div>
                    </div>
                   <div class="col-md-5">
                     <div class="form-group">
                         <label for="CPF">CPF</label>
-                        <input type="text" name="CPF" id="CPF" maxlength="14" oninput="mascaraCPF()" class="form-control">
+                        <input type="text" name="CPF" id="CPF" maxlength="14" oninput="mascaraCPF()" class="form-control" value="<%= hosAlteracao.hospedeCPF %>">
                     </div>
                   </div>
                     <div class="col-md-3">
                         <div class="form-group w-100">
                             <label for="CEP">CEP</label>
-                            <input type="text" name="CEP" id="CEP" maxlength="9" oninput="mascaraCEP()" class="form-control">
+                            <input type="text" name="CEP" id="CEP" maxlength="9" oninput="mascaraCEP()" class="form-control" value="<%= hosAlteracao.hospedeCEP %>">
                         </div>
                     </div>
 

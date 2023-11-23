@@ -31,7 +31,7 @@ class HospedesController {
         }
         let perfilModel = new PerfilModel();
         let listaPerfil = await perfilModel.listar();
-        res.render('archive/Hospedes/alterar', { lista: listaPerfil, usuAlteracao: hospedeModel, layout: 'layoutInterna' });
+        res.render('archive/Hospedes/alterar', { lista: listaPerfil, hosAlteracao: hospedeModel, layout: 'layoutInterna' });
     }
 
     async listarView(req, res) {
@@ -44,19 +44,19 @@ class HospedesController {
         let hospede = new HospedeModel();
         let listahospedes = await hospede.listarhospedes();
 
-        let listaUsu = [];
+        let listaHos = [];
 
         for(let i = 0; i<listahospedes.length; i++){
-            listaUsu.push({
+            listaHos.push({
                 id: listahospedes[i].hospedeId,
                 nome: listahospedes[i].hospedeNome,
                 dataNasc: listahospedes[i].hospedeData,
                 hospedeCPF: listahospedes[i].hospedeCPF,
-                hospedeCEP: listahospedes[i].hospedeCEP
+                hospedeCEP: listahospedes[i].hospedeCEP,
             })
         }
 
-        res.send({ lista: listaUsu, ok: true })
+        res.send({ lista: listaHos, ok: true })
     }
 
     async alterarhospede(req, res){
