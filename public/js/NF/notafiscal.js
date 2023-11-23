@@ -4,11 +4,12 @@ document.addEventListener("DOMContentLoaded", function(){
     var cnpj = document.getElementById("cnpj");
     var codigoBarras = document.getElementById("codigoBarras");
     var botaoTabela = document.getElementById("botaoTabela")
-
+    var botaoFinalizar = document.getElementById("botaoFinalizar");
 
     cnpj.addEventListener("blur", verificarCNPJ);
     codigoBarras.addEventListener("blur", verificaCodigoBarras);
-    botaoTabela.addEventListener("click", gravarProdutoLocal)
+    botaoTabela.addEventListener("click", gravarProdutoLocal);
+    botaoFinalizar.addEventListener("click", gravarNotaBanco);
 
     function verificarCNPJ(){
         let CNPJ = document.getElementById("cnpj");
@@ -98,7 +99,11 @@ document.addEventListener("DOMContentLoaded", function(){
         let produtoQuantidade = document.getElementById("produtoQuantidade");
         let produtoValor = document.getElementById("produtoValor");
         let codigoBarras = document.getElementById("codigoBarras");
-        let divNotaFiscal = document.getElementById("divNotaFiscal")
+        let divNotaFiscal = document.getElementById("divNotaFiscal");
+        let CNPJ = document.getElementById("cnpj");
+        let notaNum = document.getElementById("notaNum");
+        let notaData = document.getElementById("notaData");
+        let notaValor = document.getElementById("notaValor");
         
         if (produtoQuantidade.disabled == false){
 
@@ -108,7 +113,11 @@ document.addEventListener("DOMContentLoaded", function(){
                 produtoNome: produtoNome.value,
                 produtoQuantidade: produtoQuantidade.value,
                 produtoValor: produtoValor.value,
-                codigoBarras: codigoBarras.value
+                codigoBarras: codigoBarras.value,
+                CNPJ: CNPJ.value,
+                notaNum: notaNum.value,
+                notaData: notaData.value,
+                notaValor: notaValor.value
             }
     
             listaProdutos.push(produto);
@@ -157,5 +166,28 @@ document.addEventListener("DOMContentLoaded", function(){
         } else {
             alert("Não há produto para gravar!")
         }        
+    }
+
+    function gravarNotaBanco(){      
+        fetch('/NF/gravarNota', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({listaProdutos: listaProdutos})
+        })
+        .then(r=> {
+            return r.json();
+        })
+        .then(r=> {
+            if(r.ok) {
+                alert(r.msg);
+                listaProdutos = [];
+                localStorage.removeItem('itensNota');
+            }
+            else{
+                alert(r.msg);
+            }
+        })
     }
 })
