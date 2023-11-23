@@ -57,6 +57,24 @@ class ProdutoModel {
             return await conexao.ExecutaComandoNonQuery(sql, valores) > 0;
         }
     }
+
+    async obterProduto(id){
+        let sql = "select * from Produto where prod_codBarras = ?";
+        let valores = [id];
+
+        let rows = await conexao.ExecutaComando(sql, valores);
+
+        if (rows.length > 0){
+       
+            let produto = new ProdutoModel();
+            produto.#prodNome = rows[0]["prod_nome"];
+            produto.#prodEstoque = rows[0]["prod_estoque"];
+            produto.#prodPreco = rows[0]["prod_preco"];
+            produto.#prodCodigoBarras = rows[0]["prod_codBarras"];
+
+            return produto;
+        }
+    }
 }
 
 module.exports = ProdutoModel;

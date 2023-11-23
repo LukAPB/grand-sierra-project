@@ -18,6 +18,7 @@ class ProdutoRoute {
         this.#router.get('/', ctrl.listarView);
         this.#router.get('/cadastrar', ctrl.cadastrarView);
         this.#router.post('/cadastrar', ctrl.cadastrarProduto);
+        this.#router.post('/verificaCodigoBarras', ctrl.verificaCodigoBarras)
     }
 }
 

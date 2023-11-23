@@ -33,5 +33,23 @@ class produtoController {
         res.send({ ok: ok })
     }
 
+    async verificaCodigoBarras(req, res){
+        if(req.body.codigoBarras != ""){
+            let produto = new ProdutoModel();
+            produto = await produto.obterProduto(req.body.codigoBarras);
+            
+            if (produto != null){
+                let produtoJson = {
+                    prodCodBarras: produto.prodCodigoBarras,
+                    prodNome: produto.prodNome,
+                    prodEstoque: produto.prodEstoque,
+                    prodPreco: produto.prodPreco
+                }
+                res.send({ok: true, produto: produtoJson});
+            } else {
+                res.send({ok: false, msg: "Produto não cadastrado"});
+            }
+        }
+    }
 }
 module.exports = produtoController;
