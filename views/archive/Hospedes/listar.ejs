@@ -1,28 +1,9 @@
 <script src="/js/Hospedes/listar.js"></script>
 
 <div class="container-fluid mt-5 py-5">
-    <div class="row">
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link botao" href="criar">
-                        Cadastrar Hóspede
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link botao my-2" href="listar">
-                        Listar Hóspedes
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link botao" href="alterar">
-                        Alterar Hóspede
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="col-md-9 col-lg-10">
-            <form class="form-info p-3 w-100">
+    <div class="card border shadow-xs mb-4">
+        <div class="card-body px-3 py-3">
+            <form>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -57,7 +38,7 @@
                                         <div>
                                             <button data-id="<%= value.hospedeId %>" title="Excluir"
                                                 class="btn btn-danger btnExcluir"><i class="fas fa-trash"></i></button>
-                                            <a href="archive/Hospedes/alterar/<%= value.hospedeId %>" title="Editar"
+                                            <a href="alterar/<%= value.hospedeId %>" title="Editar"
                                                 class="btn btn-primary">
                                                 <i class="fas fa-pen"></i>
                                             </a>
