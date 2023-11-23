@@ -12,6 +12,7 @@ function verificarCNPJ(){
     let notaData = document.getElementById("notaData");
     let notaValor = document.getElementById("notaValor");
     let codigoBarras = document.getElementById("codigoBarras");
+    let divProduto = document.getElementById("divProduto")
 
     if(CNPJ.value != ""){
         var cnpj = {
@@ -36,6 +37,8 @@ function verificarCNPJ(){
                 notaData.disabled = false;
                 notaValor.disabled = false;
                 codigoBarras.disabled = false;
+                divProduto.style = "display: block"
+
             }
             else{
                 alert("Erro ao cadastrar pessoa");
