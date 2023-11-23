@@ -19,7 +19,8 @@ class LoginRoute {
         let ctrl = new LoginController();
 
         this.#router.get('/', ctrl.loginView);
-        this.#router.post('/', ctrl.autenticarUsuario);
+        this.#router.get('/logout', ctrl.logout)
+        this.#router.post('/', ctrl.autenticar);
     }
 }
 

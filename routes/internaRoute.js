@@ -1,5 +1,7 @@
 const express = require('express');
 const internaController = require('../controllers/internaController');
+const Autenticação = require('../middlewares/autenticacao');
+
 
 class InternaRoute {
 
@@ -12,10 +14,11 @@ class InternaRoute {
         this.#router = router;
     }
     constructor() {
+        let auth = new Autenticação();
 
         this.#router = express.Router();
         let ctrl = new internaController();
-        this.#router.get('/', ctrl.listarView);
+        this.#router.get('/', auth.verificaUsuarioLogadoAdmin, ctrl.listarView);
     }
 }
 

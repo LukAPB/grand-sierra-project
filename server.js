@@ -8,9 +8,11 @@ const PessoasRoute = require('./routes/pessoasRoute');
 const NfRoute = require('./routes/nfRoute');
 const InternaRoute = require('./routes/internaRoute');
 const ProdutoRoute = require('./routes/produtoRoute');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
+app.use(cookieParser());
 //configurando a nossa pasta public como o nosso repositorio de arquivos estáticos (css, js, imagens)
 app.use(express.static(__dirname + "/public"))
 

@@ -44,22 +44,25 @@
               <div class="card card-plain mt-8">
                 <div class="card-header pb-0 text-left bg-transparent">
                   <h3 class="font-weight-black text-dark display-6">Seja bem vindo!</h3>
+                  <div id="msgRetorno">
+
+                  </div>
                   <p class="mb-0 text-center">Faça seu login aqui.</p>
                 </div>
                 <div class="card-body">
                   <form role="form">
                     <label>Email</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Insira seu email" aria-label="Email"
+                      <input type="email" class="form-control" placeholder="Insira seu email" aria-label="Email" id="email" name="email"
                         aria-describedby="email-addon">
                     </div>
                     <label>Senha</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Insira sua senha" aria-label="Password"
+                      <input type="password" class="form-control" placeholder="Insira sua senha" aria-label="Password" id="senha" id="senha"
                         aria-describedby="password-addon">
                     </div>
                     <div class="text-center">
-                      <a href="/interna" type="button" class="btn btn-dark w-100 mt-4 mb-3">Login</a>
+                      <button type="button" id="btnEntrar" class="btn btn-dark w-100 mt-4 mb-3">Login</a>
                     </div>
                   </form>
                 </div>
@@ -94,6 +97,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+  <script src="/js/Login/index.js"></script>
 </body>
 
 </html>
