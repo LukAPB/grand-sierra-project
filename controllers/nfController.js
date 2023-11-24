@@ -9,7 +9,7 @@ class NfController {
     }
     
     NfView(req, res){
-        res.render('NF/notaFiscal', { layout: 'layoutInterna' });
+        res.render('NF/notafiscal', { layout: 'layoutInterna' });
     }
 
     async gravarNota(req, res){

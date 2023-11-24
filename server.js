@@ -38,7 +38,7 @@ app.use(expressLayouts);
 let homeRota = new HomeRoute();
 app.use('/', homeRota.router)
 let loginRota = new LoginRoute();
-app.use('/login', loginRota.router);
+app.use('/Login', loginRota.router);
 let hospedeRota = new HospedesRoute();
 app.use('/archive/Hospedes', hospedeRota.router);
 let nfRota = new NfRoute();

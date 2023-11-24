@@ -7,7 +7,7 @@ class LoginController {
     }
 
     loginView(req, res) {
-        res.render('login/login', { layout: 'login/login' });
+        res.render('Login/login', { layout: 'Login/login' });
     }
 
     logout(req, res){
