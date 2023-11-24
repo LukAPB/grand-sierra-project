@@ -76,5 +76,19 @@ class pessoasController {
         res.send({ ok: ok })
     }
 
+    async excluirPessoa(req, res){
+        var ok = true;
+        if(req.body.codigo != "") {
+            let pessoa = new PessoaJuridicaModel();
+            ok = await pessoa.excluir(req.body.codigo);
+        }
+        else{
+            ok = false;
+        }
+
+        res.send({ok: ok});
+
+    }
+
 }
 module.exports = pessoasController;

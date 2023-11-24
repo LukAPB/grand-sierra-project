@@ -20,7 +20,8 @@ class PessoasRoute {
         this.#router.post('/cadastrar', ctrl.cadastrarPessoas);
         this.#router.post('/verificaCNPJ', ctrl.verificaCNPJ);
         this.#router.get('/alterar/:id', ctrl.alterarView);
-        this.#router.post('/alterar/', ctrl.alterarPessoa);
+        this.#router.post('/alterar', ctrl.alterarPessoa);
+        this.#router.post('/excluir', ctrl.excluirPessoa);
     }
 }
 

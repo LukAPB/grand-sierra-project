@@ -75,5 +75,14 @@ class PessoaJuridicaModel extends PessoasModel {
             return pessoa;
         }
     }
+
+    async excluir(codigo){
+        let sql = "delete from Pessoas where pj_cnpj = ?"
+        let valores = [codigo];
+
+        var result = await conexao.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
 }
 module.exports = PessoaJuridicaModel;
