@@ -1,4 +1,6 @@
-      <!-- Navbar -->
+  <script src="/js/Pessoas/alterar.js"></script>
+    
+    <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg mx-5 px-0 shadow-none rounded" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-2">
         <nav aria-label="breadcrumb">
@@ -6,7 +8,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Início</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pessoas</li>
           </ol>
-          <h6 class="font-weight-bold mb-0">Listagem de Pessoas</h6>
+          <h6 class="font-weight-bold mb-0">Alteração de Pessoa Jurídica</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -56,82 +58,69 @@
             <div class="card-header border-bottom pb-0">
               <div class="d-sm-flex align-items-center mb-3">
                 <div>
-                  <h6 class="font-weight-semibold text-lg mb-0">Pessoas Cadastradas</h6>
-                  <p class="text-sm mb-sm-0">Lista de pessoas cadastradas</p>
+                  <h6 class="font-weight-semibold text-lg mb-0">Pessoa Jurídica</h6>
+                  <p class="text-sm mb-sm-0">Insira os dados da pessoa jurídica para efetuar o cadastro.</p>
                 </div>
                 <div class="ms-auto d-flex">
-                  <a href="" type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
-                    <span class="btn-inner--icon">
-                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="d-block me-2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                      </svg>
-                    </span>
-                    <span class="btn-inner--text">Exportar PDF</span>
-                  </a>
-                  <a href="/Pessoas/cadastrar" type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
+                  <button id="btnAlterar" type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
                     <span class="btn-inner--icon">
                     </span>
-                    <span class="btn-inner--text">Cadastrar Pessoa Jurídica</span>
-                  </a>
-                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0 me-2">
-                    <span class="btn-inner--icon">
-                    </span>
-                    <span class="btn-inner--text">Cadastrar Pessoa Física</span>
+                    <span class="btn-inner--text">Alterar</span>
                   </button>
                 </div>
               </div>
             </div>
-            <div class="card-body px-0 py-0">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center justify-content-center mb-0">
-                  <thead class="bg-gray-100">
-                    <tr>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7">Tipo</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Nome</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">E-mail</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">CPF/CNPJ</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Ações</th>
-                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% lista.map(function(value, index) { %>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
-                            <i class="fa-regular fa-building" style="color: #000000;"></i>
-                            <!-- <img src="/img/small-logos/logo-spotify.svg" class="w-80" alt="spotify"> -->
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Pessoa Jurídica</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="text-sm font-weight-normal"><%= value.pessoaNome %></span>
-                      </td>
-                      <td>
-                        <span class="text-sm font-weight-normal"><%= value.pessoaEmail %></span>
-                      </td>
-                      <td>
-                        <span class="text-sm font-weight-normal"><%= value.pjCNPJ %></span>
-                      </td>
-                      <td class="align-middle">
-                        <a href="/Pessoas/alterar/<%=value.pjCNPJ%>" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Edit user">
-                          <i class="fa-solid fa-pencil"></i> Alterar
-                        </a>
-                      </td>
-                      <td class="align-middle">
-                        <a type="button" data-codigo="<%=value.pjCNPJ%>" class="btnExcluir text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
-                          <i class="fa-solid fa-trash"></i> Excluir
-                        </a>
-                      </td>
-                    </tr>
-                    <% }) %>
-                  </tbody>
-                </table>
-              </div>
+            <div class="card-body px-3 py-3">
+              <form>
+                <div class="row">
+                  <div style="display: none" class="col-md-4">
+                    <div class="form-group">
+                      <label for="id">ID</label>
+                      <input value="<%=pessoa.pessoaId%>" type="text" class="form-control" name="id" id="id" placeholder="__.___.___/____-__">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="CNPJ">CNPJ</label>
+                      <input value="<%=pessoa.pjCNPJ%>" type="text" class="form-control" name="CNPJ" id="CNPJ" placeholder="__.___.___/____-__">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label for="razaosocial">Razão Social</label>
+                      <input value="<%=pessoa.pessoaNome%>" type="text" name="razaosocial" id="razaoSocial" placeholder="" class="form-control"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="CEP">CEP</label>
+                      <input value="<%=pessoa.pessoaCEP%>" type="text" name="CEP" id="CEP" placeholder="_____-____" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="form-group">
+                      <label for="logradouro">Logradouro</label>
+                      <input value="<%=pessoa.pessoaLogradouro%>" type="text" name="logradouro" id="logradouro" placeholder="" class="form-control"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="numTelefone">Telefone</label>
+                      <input value="<%=pessoa.pessoaNumTelefone%>" type="text" name="numTelefone" id="numTelefone" placeholder="(__) _____-____" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="form-group">
+                      <label for="email">E-mail</label>
+                      <input value="<%=pessoa.pessoaEmail%>" type="text" name="email" id="email" placeholder="" class="form-control"/>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>

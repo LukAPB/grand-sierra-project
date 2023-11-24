@@ -12,7 +12,7 @@ class PessoaJuridicaModel extends PessoasModel {
     get pjCNPJ() { return this.#pjCNPJ; } set pjCNPJ(pjCNPJ) {this.#pjCNPJ = pjCNPJ;}
 
     constructor (pessoaNome, pessoaEmail, pessoaLogradouro, pessoaCEP, pessoaNumTelefone, pjCNPJ, pessoaId) {
-        super(pessoaNome, pessoaEmail, pessoaLogradouro, pessoaCEP, pessoaNumTelefone);
+        super(pessoaId, pessoaNome, pessoaEmail, pessoaLogradouro, pessoaCEP, pessoaNumTelefone);
         this.#pjCNPJ = pjCNPJ;
         this.#pessoaId = pessoaId;
     }
@@ -67,6 +67,10 @@ class PessoaJuridicaModel extends PessoasModel {
             pessoa.pessoaId = rows[0]["pessoa_id"];
             pessoa.pessoaNome = rows[0]["nome"];
             pessoa.#pjCNPJ = rows[0]["pj_cnpj"];
+            pessoa.pessoaCEP = rows[0]["CEP"];
+            pessoa.pessoaEmail = rows[0]["email"];
+            pessoa.pessoaLogradouro = rows[0]["logradouro"];
+            pessoa.pessoaNumTelefone = rows[0]["numTelefone"];
 
             return pessoa;
         }

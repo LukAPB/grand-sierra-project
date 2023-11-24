@@ -20,7 +20,7 @@ class PessoasModel{
     get pessoaCEP() { return this.#pessoaCEP; } set pessoaCEP(pessoaCEP) {this.#pessoaCEP = pessoaCEP;}
     get pessoaNumTelefone() { return this.#pessoaNumTelefone; } set pessoaNumTelefone(pessoaNumTelefone) {this.#pessoaNumTelefone = pessoaNumTelefone;}
 
-    constructor (pessoaId, pessoaNome, pessoaSenha, pessoaEmail, pessoaLogradouro, pessoaCEP, pessoaNumTelefone){
+    constructor (pessoaId, pessoaNome, pessoaEmail, pessoaLogradouro, pessoaCEP, pessoaNumTelefone, pessoaSenha){
         this.#pessoaId = pessoaId;
         this.#pessoaNome = pessoaNome;
         this.#pessoaSenha = pessoaSenha;

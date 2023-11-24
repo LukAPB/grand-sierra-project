@@ -51,5 +51,30 @@ class pessoasController {
         }
     }
 
+    async alterarView(req, res){
+        let pessoa = new PessoaJuridicaModel();
+
+        if(req.params.id != undefined && req.params.id != ""){
+            pessoa = await pessoa.obterPessoa(req.params.id);
+        }
+        res.render("Pessoas/alterar", {pessoa: pessoa, layout: 'layoutInterna'});
+    }
+
+    async alterarPessoa(req, res) {
+        var ok = true;
+
+        if(req.body.razaoSocial != "" && req.body.email != "" && req.body.CEP != '' && req.body.logradouro != '' && req.body.CNPJ != '' && req.body.numTelefone != '') {
+
+            let pessoa = new PessoaJuridicaModel(req.body.razaoSocial, req.body.email, req.body.logradouro, req.body.CEP, req.body.numTelefone, req.body.CNPJ, req.body.id)
+            
+            ok = await pessoa.gravar();
+        }
+        else{
+            ok = false;
+        }
+
+        res.send({ ok: ok })
+    }
+
 }
 module.exports = pessoasController;
