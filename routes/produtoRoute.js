@@ -18,7 +18,10 @@ class ProdutoRoute {
         this.#router.get('/', ctrl.listarView);
         this.#router.get('/cadastrar', ctrl.cadastrarView);
         this.#router.post('/cadastrar', ctrl.cadastrarProduto);
-        this.#router.post('/verificaCodigoBarras', ctrl.verificaCodigoBarras)
+        this.#router.post('/verificaCodigoBarras', ctrl.verificaCodigoBarras);
+        this.#router.get('/alterar/:id', ctrl.alterarView);
+        this.#router.post('/alterar', ctrl.alterarProduto);
+        this.#router.post('/excluir', ctrl.excluirProduto);
     }
 }
 

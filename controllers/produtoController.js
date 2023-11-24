@@ -51,5 +51,42 @@ class produtoController {
             }
         }
     }
+
+    async alterarView(req, res){
+        let produto = new ProdutoModel();
+
+        if(req.params.id != undefined && req.params.id != ""){
+            produto = await produto.obterProduto(req.params.id);
+        }
+        res.render("Produto/alterar", {produto: produto, layout: 'layoutInterna'});
+    }
+
+    async alterarProduto(req, res) {
+        var ok = true;
+        if(req.body.nome != "" && req.body.codigoBarras != "" && req.body.preco != "" && req.body.estoque  != '') {
+
+            let produto = new ProdutoModel(req.body.codigoBarras, req.body.nome, req.body.estoque, req.body.preco);
+            
+            ok = await produto.gravar();
+        }
+        else{
+            ok = false;
+        }
+
+        res.send({ ok: ok })
+    }
+
+    async excluirProduto(req, res){
+        var ok = true;
+        if(req.body.codigo != "") {
+            let produto = new ProdutoModel();
+            ok = await produto.excluir(req.body.codigo);
+        }
+        else{
+            ok = false;
+        }
+
+        res.send({ok: ok});
+    }
 }
 module.exports = produtoController;

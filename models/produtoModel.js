@@ -51,7 +51,7 @@ class ProdutoModel {
         }
         else{
             
-            let sql = "update Produto set prod_nome = ?, prod_estoque = ?, prod_preco = ? where prodCodigoBarras = ?";
+            let sql = "update Produto set prod_nome = ?, prod_estoque = ?, prod_preco = ? where prod_codBarras = ?";
             let valores = [this.#prodNome, this.#prodEstoque, this.#prodPreco, this.#prodCodigoBarras, ];
 
             return await conexao.ExecutaComandoNonQuery(sql, valores) > 0;
@@ -74,6 +74,15 @@ class ProdutoModel {
 
             return produto;
         }
+    }
+
+    async excluir(codigo){
+        let sql = "delete from Produto where prod_codBarras = ?"
+        let valores = [codigo];
+
+        var result = await conexao.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 }
 
