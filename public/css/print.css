@@ -1,0 +1,18 @@
+.logoEmpresa {
+    display: none;
+}
+
+@media print {
+    .logoEmpresa {
+        display: block;
+        text-align: end;
+    }
+
+    #btnExportarPdf {
+        display: none;
+    }
+
+    #navbarBlur {
+        display: none;
+    }
+}

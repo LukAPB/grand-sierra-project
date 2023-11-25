@@ -90,5 +90,13 @@ class pessoasController {
 
     }
 
+    async filtrar(req, res) {    
+        let pessoa = new PessoaJuridicaModel();
+        let termo = req.body.termo == "" ? null : req.body.termo;
+        let lista = await pessoa.filtrarPessoas(req.body.criterio, termo);
+
+        res.send({lista: lista});
+    }
+
 }
 module.exports = pessoasController;

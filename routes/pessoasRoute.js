@@ -22,6 +22,7 @@ class PessoasRoute {
         this.#router.get('/alterar/:id', ctrl.alterarView);
         this.#router.post('/alterar', ctrl.alterarPessoa);
         this.#router.post('/excluir', ctrl.excluirPessoa);
+        this.#router.post('/filtrar', ctrl.filtrar);
     }
 }
 

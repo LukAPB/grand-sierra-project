@@ -84,5 +84,39 @@ class PessoaJuridicaModel extends PessoasModel {
 
         return result;
     }
+
+    async filtrarPessoas(criterioBusca, termoBusca) {
+
+        let sqlWhere = "";
+        if(criterioBusca == "nomePessoa" && termoBusca != null){
+            sqlWhere = ` where nome like '%${termoBusca}%' `;
+        }
+        if(criterioBusca == "numeroPessoa" && termoBusca != null) {
+            sqlWhere = ` where pj_cnpj like '%${termoBusca}%' `;
+        }
+
+        let sql = `select * from Pessoas ${sqlWhere} `;
+
+        let rows = await conexao.ExecutaComando(sql);
+        let listaRetorno = [];
+
+        if(rows.length > 0){
+            for(let i=0; i<rows.length; i++){
+                var row = rows[i];
+
+                listaRetorno.push({
+                    pessoaId: row["pessoa_id"],
+                    pessoaNome: row["nome"],
+                    pjCNPJ: row["pj_cnpj"],
+                    pessoaCEP: row["CEP"],
+                    pessoaEmail: row["email"],
+                    pessoaLogradouro: row["logradouro"],
+                    pessoaNumTelefone: row["numTelefone"],
+                });
+            }
+        }
+
+        return listaRetorno;
+    }
 }
 module.exports = PessoaJuridicaModel;
