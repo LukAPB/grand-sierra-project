@@ -71,7 +71,12 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="cnpj">CNPJ</label>
-                      <input type="text" class="form-control" id="cnpj" placeholder="__.___.___/____-__">
+                      <select class="form-control" id="cnpj" name="cnpj">
+                        <option value="" selected>Escolha o CNPJ</option>
+                          <% for(let i = 0; i<lista.length; i++) { %>
+                            <option value="<%=lista[i].pjCNPJ%>"><%= lista[i].pjCNPJ %> - <%= lista[i].pessoaNome %></option>
+                          <% } %> 
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-8">
@@ -133,7 +138,12 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <label for="codigoBarras">Código de barras</label>
-                      <input type="text" class="form-control" name="codigoBarras" id="codigoBarras" placeholder="0000000000000" disabled>
+                      <select class="form-control" id="codigoBarras" name="codigoBarras">
+                        <option value="" selected>Escolha o código de barras</option>
+                          <% for(let i = 0; i<codigo.length; i++) { %>
+                            <option value="<%=codigo[i].prodCodigoBarras%>"><%= codigo[i].prodCodigoBarras %> - <%= codigo[i].prodNome %></option>
+                          <% } %> 
+                      </select>
                     </div>
                   </div>
                   <div class="col-md-5">

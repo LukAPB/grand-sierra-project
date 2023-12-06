@@ -1,5 +1,6 @@
 const NotaFiscalModel = require("../models/notaFiscalModel");
-const PessoaJuridicaModel = require("../models/pessoaJuridicaModel")
+const PessoaJuridicaModel = require("../models/pessoaJuridicaModel");
+const ProdutoModel = require("../models/produtoModel");
 const ProdutosDaNotaModel = require("../models/produtosDaNotaModel");
 
 class NfController {
@@ -8,8 +9,18 @@ class NfController {
 
     }
     
-    NfView(req, res){
-        res.render('NF/notafiscal', { layout: 'layoutInterna' });
+    async NfView(req, res){
+        let pessoa = new PessoaJuridicaModel();
+        let pessoaJuridica = await pessoa.listarPessoas();
+
+        let codigo = new ProdutoModel();
+        codigo = await codigo.listarProdutos();
+
+        res.render('NF/notafiscal', { layout: 'layoutInterna', lista: pessoaJuridica, codigo: codigo });
+    }
+
+    async buscaCodigo(){
+
     }
 
     async gravarNota(req, res){

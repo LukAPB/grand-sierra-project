@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function(){
     var botaoTabela = document.getElementById("botaoTabela")
     var botaoFinalizar = document.getElementById("botaoFinalizar");
 
-    cnpj.addEventListener("blur", verificarCNPJ);
-    codigoBarras.addEventListener("blur", verificaCodigoBarras);
+    cnpj.addEventListener("change", verificarCNPJ);
+    codigoBarras.addEventListener("change", verificaCodigoBarras);
     botaoTabela.addEventListener("click", gravarProdutoLocal);
     botaoFinalizar.addEventListener("click", gravarNotaBanco);
 
@@ -36,15 +36,14 @@ document.addEventListener("DOMContentLoaded", function(){
             })
             .then(r=> {
                 if(r.ok) {
-                    alert("Deu certo!")
+                    CNPJ.options[CNPJ.selectedIndex].innerHTML = r.pessoa.pjCNPJ;
                     nome.value = r.pessoa.pessoaNome;
                     CNPJ.disabled = true;
                     notaNum.disabled = false;
                     notaData.disabled = false;
                     notaValor.disabled = false;
                     codigoBarras.disabled = false;
-                    divProduto.style = "display: block"
-
+                    divProduto.style = "display: block";
                 }
                 else{
                     alert("CNPJ não cadastrado. Por favor, efetue o cadastro de pessoa jurídica.");
@@ -78,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function(){
             })
             .then(r=> {
                 if(r.ok) {
-                    alert("Deu certo!")
+                    codigoBarras.options[codigoBarras.selectedIndex].innerHTML = r.produto.prodCodBarras;
                     codigoBarras.disabled = true;
                     produtoNome.value = r.produto.prodNome;
                     produtoQuantidade.disabled = false;
