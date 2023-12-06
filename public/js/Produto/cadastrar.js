@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     var btnGravar = document.getElementById("btnCadastrar");
-    var nome = document.getElementById("nome");
     var codigoBarras = document.getElementById("codigoBarras");
     var estoque = document.getElementById("estoque");
     var preco = document.getElementById("preco");
