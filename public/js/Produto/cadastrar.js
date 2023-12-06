@@ -1,11 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     var btnGravar = document.getElementById("btnCadastrar");
+    var nome = document.getElementById("nome");
     var codigoBarras = document.getElementById("codigoBarras");
     var estoque = document.getElementById("estoque");
     var preco = document.getElementById("preco");
     
     btnGravar.addEventListener("click", gravarProduto);
+
+    nome.addEventListener("input", function() {
+        if (this.value.length > 60) {
+            this.value = this.value.slice(0, 60);
+        }
+    });
 
     codigoBarras.addEventListener("input", function() {
         var value = codigoBarras.value;
