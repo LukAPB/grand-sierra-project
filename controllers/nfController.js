@@ -19,15 +19,12 @@ class NfController {
         res.render('NF/notafiscal', { layout: 'layoutInterna', lista: pessoaJuridica, codigo: codigo });
     }
 
-    async buscaCodigo(){
-
-    }
-
     async gravarNota(req, res){
         let listaProdutos = req.body.listaProdutos;
         
         if(listaProdutos != null && listaProdutos.length > 0) {     
             let cnpj = listaProdutos[0].CNPJ;
+            
 
             let pessoa = new PessoaJuridicaModel();
             let pessoaJuridica = await pessoa.obterPessoa(cnpj);
@@ -37,10 +34,15 @@ class NfController {
 
             for(let i = 0; i < listaProdutos.length; i++){
                 let pedidoItem = new ProdutosDaNotaModel(listaProdutos[i].codigoBarras, listaProdutos[i].notaNum, listaProdutos[i].produtoQuantidade, listaProdutos[i].produtoValor, pessoaJuridica.pessoaId);
-
                 await pedidoItem.gravar();
-            }
 
+                let produto = new ProdutoModel();
+                let codigoBarras = listaProdutos[i].codigoBarras;
+                produto = await produto.obterProduto(codigoBarras);
+                produto.prodEstoque = parseInt(produto.prodEstoque) + parseInt(listaProdutos[i].produtoQuantidade);
+                await produto.gravar();
+            }
+            
             res.send({msg:"Nota Fiscal gravada com sucesso!", ok: true});
         } else {
             res.send({msg: "ERRO", ok: false});
