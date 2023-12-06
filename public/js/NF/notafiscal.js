@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function(){
     var codigoBarras = document.getElementById("codigoBarras");
     var botaoTabela = document.getElementById("botaoTabela")
     var botaoFinalizar = document.getElementById("botaoFinalizar");
-    var id = 0;
 
     var NotaNum = document.getElementById("notaNum");
     var NotaData = document.getElementById("notaData");
@@ -269,7 +268,6 @@ document.addEventListener("DOMContentLoaded", function(){
             produtoValor.disabled = true;
             produtoValor.value = "";
             btnValorTotalDaNota.innerHTML = `Valor Total da Nota - R$${valorTotalDaNota.toFixed(2).replace('.',',')}`
-            id++;
         } else {
             alert("Verifique os campos!");
             if (produtoQuantidade.value == "")
@@ -330,6 +328,4 @@ function excluirItemNotaLocal(id){
     }
 
     btnValorTotalDaNota.innerHTML = `Valor Total da Nota - R$${valorTotalDaNota.toFixed(2).replace('.',',')}`
-
-    
 }
