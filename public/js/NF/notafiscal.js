@@ -1,12 +1,13 @@
-document.addEventListener("DOMContentLoaded", function(){
+let listaProdutos = [];
+let valorTotalDaNota = 0;
 
-    let listaProdutos = [];
+document.addEventListener("DOMContentLoaded", function(){
+    
     var cnpj = document.getElementById("cnpj");
     var codigoBarras = document.getElementById("codigoBarras");
     var botaoTabela = document.getElementById("botaoTabela")
     var botaoFinalizar = document.getElementById("botaoFinalizar");
     var id = 0;
-    var valorTotalDaNota = 0;
 
     var NotaNum = document.getElementById("notaNum");
     var NotaData = document.getElementById("notaData");
@@ -229,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function(){
             valorTotalDaNota += (parseInt(produto.produtoQuantidade) * parseFloat(produto.produtoValor));
     
             let html = `
-                        <tr id="R${id}" >
+                        <tr id="R${produto.codigoBarras}" >
                           <td>
                             <div class="d-flex px-2">
                               <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
@@ -250,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function(){
                             <span class="text-sm font-weight-normal">R$${(parseInt(produto.produtoQuantidade) * parseFloat(produto.produtoValor)).toFixed(2).replace('.',',')}</span>
                           </td>
                           <td class="align-middle">
-                            <a type="button" onclick="excluirItemNotaLocal('${id}')" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
+                            <a type="button" onclick="excluirItemNotaLocal('${produto.codigoBarras}')" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
                                 <i class="fa-solid fa-trash"></i> Excluir
                             </a>
                           </td>
@@ -310,6 +311,25 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function excluirItemNotaLocal(id){
     let row = "R" + id;
+    valorTotalDaNota = 0;
+    let codigoBarrasParaRemover = id; 
+    let btnValorTotalDaNota = document.getElementById("btnValorTotalDaNota");
+
     row = document.getElementById(row);
     row.remove();
+
+    listaProdutos = listaProdutos.filter(produto => produto.codigoBarras !== codigoBarrasParaRemover);
+    localStorage.setItem('itensNota', JSON.stringify(listaProdutos));
+    
+    for (let index = 0; index < listaProdutos.length; index++) {
+        
+        let quant = parseInt(listaProdutos[index].produtoQuantidade);
+        let valor = parseFloat(listaProdutos[index].produtoValor);
+        
+        valorTotalDaNota += quant * valor;
+    }
+
+    btnValorTotalDaNota.innerHTML = `Valor Total da Nota - R$${valorTotalDaNota.toFixed(2).replace('.',',')}`
+
+    
 }

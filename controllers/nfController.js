@@ -45,7 +45,7 @@ class NfController {
             
             res.send({msg:"Nota Fiscal gravada com sucesso!", ok: true});
         } else {
-            res.send({msg: "ERRO", ok: false});
+            res.send({msg: "Não foi possível gravar a Nota Fiscal!", ok: false});
         }
     }
 
