@@ -6,47 +6,83 @@ document.addEventListener("DOMContentLoaded", function(){
     var botaoTabela = document.getElementById("botaoTabela")
     var botaoFinalizar = document.getElementById("botaoFinalizar");
     var id = 0;
+    var valorTotalDaNota = 0;
 
-    var notaNum = document.getElementById("notaNum");
-    var notaData = document.getElementById("notaData");
-    var notaValor = document.getElementById("notaValor");
-    var produtoValor = document.getElementById("produtoValor");
-    var produtoQuantidade = document.getElementById("produtoQuantidade");
+    var NotaNum = document.getElementById("notaNum");
+    var NotaData = document.getElementById("notaData");
+    var NotaValor = document.getElementById("notaValor");
+    var ProdutoValor = document.getElementById("produtoValor");
+    var ProdutoQuantidade = document.getElementById("produtoQuantidade");
 
     cnpj.addEventListener("change", verificarCNPJ);
     codigoBarras.addEventListener("change", verificaCodigoBarras);
     botaoTabela.addEventListener("click", gravarProdutoLocal);
     botaoFinalizar.addEventListener("click", gravarNotaBanco);
-    notaNum.addEventListener("input", function(){
+    NotaNum.addEventListener("input", function(){
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
-    produtoQuantidade.addEventListener("input", function(){
+    ProdutoQuantidade.addEventListener("input", function(){
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
-
-    notaValor.addEventListener("input", function(){
+    NotaValor.addEventListener("input", function(){
+        if(this.value === "" || parseFloat(this.value) < 0){
+            alert("Valor da nota fiscal inválido");
+            this.value = "";
+        }
         this.value = this.value.replace(/\D/g, ''); // Remove non-digit characters
         this.value = this.value.replace(/^(\d{1,})(\d{2})$/, "$1,$2"); // Add comma for decimal separator
         this.value = this.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Add dot for thousands separator
     });
 
-    produtoValor.addEventListener("input", function(){
+    ProdutoValor.addEventListener("input", function(){
         this.value = this.value.replace(/\D/g, ''); // Remove non-digit characters
         this.value = this.value.replace(/^(\d{1,})(\d{2})$/, "$1,$2"); // Add comma for decimal separator
         this.value = this.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Add dot for thousands separator
-    });
-
-    notaData.addEventListener("change", function(){
-        var selectedDate = new Date(this.value);
-        var today = new Date();
-
-        if(selectedDate > today){
-            alert("Data inválida. Selecione uma data anterior ou igual a hoje.");
+        if(this.value === "" || isNaN(parseFloat(this.value))){
+            alert("Valor do produto inválido");
             this.value = "";
         }
     });
+
+    ProdutoQuantidade.addEventListener("input", function(){
+        var quantidade = parseInt(this.value);
+        if(this.value === "" || isNaN(quantidade) || quantidade <= 0 || this.value != quantidade){
+            alert("Quantidade inválida");
+            this.value = "";
+        }
+    });
+
+    NotaData.addEventListener("change", function(){
+        var selectedDate = new Date(this.value);
+        var currentDate = new Date();
+        if(selectedDate > currentDate || isNaN(selectedDate)){
+            alert("Data inválida");
+            this.value = "";
+        }
+    });
+
+    [NotaValor, ProdutoValor].forEach(function(elemento){
+        elemento.addEventListener("input", function(){
+            var valor = parseFloat(this.value);
+            if(isNaN(valor) || valor <= 0){
+                alert("Valor inválido");
+                this.value = "";
+            }
+        });
+    });
+
+    codigoBarras.selectedIndex = 0;
+    cnpj.selectedIndex = 0;
+
+    window.onload = function(){
+        var inputs = document.getElementsByTagName("input");
+        for(var i = 0; i < inputs.length; i++){
+            inputs[i].value = "";
+        }
+    };
+
 
     function verificarCNPJ(){
         let CNPJ = document.getElementById("cnpj");
@@ -100,8 +136,13 @@ document.addEventListener("DOMContentLoaded", function(){
         let notaNum = document.getElementById("notaNum");
         let notaData = document.getElementById("notaData");
         let notaValor = document.getElementById("notaValor");
+        let botaoTabela = document.getElementById("botaoTabela");
 
-        if(codigoBarras.value != "" ){
+        notaData.classList.remove("is-invalid");
+        notaValor.classList.remove("is-invalid");
+        notaNum.classList.remove("is-invalid");
+
+        if(notaNum.value != "" && notaData.value != "" && notaValor.value != "" && codigoBarras.value != ""){
             var codigobarras = {
                 codigoBarras: codigoBarras.value
             }
@@ -125,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     notaNum.disabled = true;
                     notaData.disabled = true;
                     notaValor.disabled = true;
+                    botaoTabela.style = "display: block;"
                 }
                 else{
                     alert("Produto não cadastrado. Por favor, efetue o cadastro de produto.");
@@ -133,6 +175,20 @@ document.addEventListener("DOMContentLoaded", function(){
             .catch(e => {
                 console.log(e);
             })
+        } else {
+            if (notaNum.value == "")
+            {
+                notaNum.classList.add("is-invalid");
+            }
+            if (notaValor.value == "")
+            {
+                notaValor.classList.add("is-invalid");
+            }
+            if (notaData.value == ""){
+                notaData.classList.add("is-invalid");
+            }
+            codigoBarras.selectedIndex = 0;
+            alert("Preencha os campos destacados!");
         }
     }
 
@@ -146,8 +202,12 @@ document.addEventListener("DOMContentLoaded", function(){
         let notaNum = document.getElementById("notaNum");
         let notaData = document.getElementById("notaData");
         let notaValor = document.getElementById("notaValor");
+        let btnValorTotalDaNota = document.getElementById("btnValorTotalDaNota");
+
+        produtoQuantidade.classList.remove("is-invalid");
+        produtoValor.classList.remove("is-invalid");
         
-        if (produtoQuantidade.disabled == false){
+        if (produtoQuantidade.value != "" && produtoValor.value != "" && produtoQuantidade.disabled == false){
 
             divNotaFiscal.style = "display: block";
 
@@ -165,6 +225,8 @@ document.addEventListener("DOMContentLoaded", function(){
             listaProdutos.push(produto);
     
             localStorage.setItem('itensNota', JSON.stringify(listaProdutos));
+
+            valorTotalDaNota += (parseInt(produto.produtoQuantidade) * parseFloat(produto.produtoValor));
     
             let html = `
                         <tr id="R${id}" >
@@ -205,9 +267,18 @@ document.addEventListener("DOMContentLoaded", function(){
             produtoQuantidade.value = "";
             produtoValor.disabled = true;
             produtoValor.value = "";
+            btnValorTotalDaNota.innerHTML = `Valor Total da Nota - R$${valorTotalDaNota.toFixed(2).replace('.',',')}`
             id++;
         } else {
-            alert("Não há produto para gravar!")
+            alert("Verifique os campos!");
+            if (produtoQuantidade.value == "")
+            {
+                produtoQuantidade.classList.add("is-invalid");
+            }
+            if (produtoValor.value == "")
+            {
+                produtoValor.classList.add("is-invalid");
+            }
         }        
     }
 
