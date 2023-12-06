@@ -7,10 +7,46 @@ document.addEventListener("DOMContentLoaded", function(){
     var botaoFinalizar = document.getElementById("botaoFinalizar");
     var id = 0;
 
+    var notaNum = document.getElementById("notaNum");
+    var notaData = document.getElementById("notaData");
+    var notaValor = document.getElementById("notaValor");
+    var produtoValor = document.getElementById("produtoValor");
+    var produtoQuantidade = document.getElementById("produtoQuantidade");
+
     cnpj.addEventListener("change", verificarCNPJ);
     codigoBarras.addEventListener("change", verificaCodigoBarras);
     botaoTabela.addEventListener("click", gravarProdutoLocal);
     botaoFinalizar.addEventListener("click", gravarNotaBanco);
+    notaNum.addEventListener("input", function(){
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    produtoQuantidade.addEventListener("input", function(){
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+
+    notaValor.addEventListener("input", function(){
+        this.value = this.value.replace(/\D/g, ''); // Remove non-digit characters
+        this.value = this.value.replace(/^(\d{1,})(\d{2})$/, "$1,$2"); // Add comma for decimal separator
+        this.value = this.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Add dot for thousands separator
+    });
+
+    produtoValor.addEventListener("input", function(){
+        this.value = this.value.replace(/\D/g, ''); // Remove non-digit characters
+        this.value = this.value.replace(/^(\d{1,})(\d{2})$/, "$1,$2"); // Add comma for decimal separator
+        this.value = this.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Add dot for thousands separator
+    });
+
+    notaData.addEventListener("change", function(){
+        var selectedDate = new Date(this.value);
+        var today = new Date();
+
+        if(selectedDate > today){
+            alert("Data inválida. Selecione uma data anterior ou igual a hoje.");
+            this.value = "";
+        }
+    });
 
     function verificarCNPJ(){
         let CNPJ = document.getElementById("cnpj");
@@ -54,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 console.log(e);
             })
         }
-    }
+    }  
 
     function verificaCodigoBarras(){
         let produtoNome = document.getElementById("produtoNome");
@@ -65,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let notaData = document.getElementById("notaData");
         let notaValor = document.getElementById("notaValor");
 
-        if(codigoBarras.value != ""){
+        if(codigoBarras.value != "" ){
             var codigobarras = {
                 codigoBarras: codigoBarras.value
             }
@@ -118,12 +154,12 @@ document.addEventListener("DOMContentLoaded", function(){
             let produto = {
                 produtoNome: produtoNome.value,
                 produtoQuantidade: produtoQuantidade.value,
-                produtoValor: produtoValor.value,
+                produtoValor: produtoValor.value.replace(',', '.'),
                 codigoBarras: codigoBarras.value,
                 CNPJ: CNPJ.value,
                 notaNum: notaNum.value,
                 notaData: notaData.value,
-                notaValor: notaValor.value
+                notaValor: notaValor.value.replace(',','.')
             }
     
             listaProdutos.push(produto);
@@ -146,10 +182,10 @@ document.addEventListener("DOMContentLoaded", function(){
                           <span class="text-sm font-weight-normal">${produto.produtoQuantidade}</span>
                           </td>
                           <td>
-                            <span class="text-sm font-weight-normal">R$${produto.produtoValor}</span>
+                            <span class="text-sm font-weight-normal">R$${produto.produtoValor.replace('.',',')}</span>
                           </td>
                           <td>
-                            <span class="text-sm font-weight-normal">R${(produto.produtoQuantidade * produto.produtoValor)}</span>
+                            <span class="text-sm font-weight-normal">R$${(parseInt(produto.produtoQuantidade) * parseFloat(produto.produtoValor)).toFixed(2).replace('.',',')}</span>
                           </td>
                           <td class="align-middle">
                             <a type="button" onclick="excluirItemNotaLocal('${id}')" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip">
