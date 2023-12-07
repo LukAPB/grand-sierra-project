@@ -135,9 +135,9 @@ function gravarPessoa() {
     var numTelefone = document.getElementById("numTelefone");
 
     //if de validação básica
-    if(razaoSocial.value != "" && validarEmail(email.value) && CEP.value != '' 
-    && logradouro.value != '' && CNPJ.value != '' 
-    && numTelefone.value != '')
+    if(razaoSocial.value != "" && validarEmail(email.value) && CEP.value.length >= 13
+    && logradouro.value != '' && CNPJ.value.length >= 14
+    && numTelefone.value.length >= 8)
     {
 
         var pessoa = {
@@ -173,7 +173,22 @@ function gravarPessoa() {
 
     }
     else{
-        alert("Preencha todos os campos corretamente!");
+        if (CNPJ.value == "")
+            CNPJ.classList.add("is-invalid");
+        if (razaoSocial.value == "")
+            razaoSocial.classList.add("is-invalid");
+        if (CEP.value.length <= 13)
+            CEP.classList.add("is-invalid");
+        if (!validarEmail(email.value))
+            email.classList.add("is-invalid");
+        if (CNPJ.value.length <= 14)
+            CNPJ.classList.add("is-invalid");
+        if (numTelefone.value.length <= 8)
+            numTelefone.classList.add("is-invalid");
+        if (logradouro.value == '')
+            logradouro.classList.add("is-invalid");
+        
+        alert("Preencha os campos destacados!");
         return;
     }
 }
