@@ -3,6 +3,13 @@ document.addEventListener("DOMContentLoaded", function(){
     var btnGravar = document.getElementById("btnCadastrar");
 
     btnGravar.addEventListener("click", gravarPessoa);
+
+    var razaoSocial = document.getElementById("razaoSocial");
+    var email = document.getElementById("email");
+    var CEP = document.getElementById("CEP");
+    var logradouro = document.getElementById("logradouro");
+    var CNPJ = document.getElementById("CNPJ");
+    var numTelefone = document.getElementById("numTelefone");
 })
 
 function gravarPessoa() {
