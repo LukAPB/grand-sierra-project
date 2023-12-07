@@ -134,6 +134,13 @@ function gravarPessoa() {
     var CNPJ = document.getElementById("CNPJ");
     var numTelefone = document.getElementById("numTelefone");
 
+    razaoSocial.classList.remove("is-invalid");
+    email.classList.add("is-invalid");
+    CEP.classList.add("is-invalid");
+    logradouro.classList.add("is-invalid");
+    CNPJ.classList.add("is-invalid");
+    numTelefone.classList.add("is-invalid");
+
     //if de validação básica
     if(razaoSocial.value != "" && validarEmail(email.value) && CEP.value.length >= 13
     && logradouro.value != '' && CNPJ.value.length >= 14
