@@ -65,7 +65,7 @@ class produtoController {
         var ok = true;
         if(req.body.nome != "" && req.body.codigoBarras != "" && req.body.preco != "" && req.body.estoque  != '') {
 
-            let produto = new ProdutoModel(req.body.codigoBarras, req.body.nome, req.body.estoque, req.body.preco);
+            let produto = new ProdutoModel(req.body.codigoBarras, req.body.nome, req.body.estoque, req.body.preco.replace(',', '.'));
             
             ok = await produto.gravar();
         }

@@ -75,6 +75,7 @@ function alterarProduto() {
         .then(r=> {
             if(r.ok) {
                 alert("Produto alterado!");
+                window.location.href = "/Produto"; // Redirecionar para a tela inicial
             }
             else{
                 alert("Erro ao alterar produto");

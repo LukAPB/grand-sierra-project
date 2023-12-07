@@ -12,7 +12,7 @@ class LoginController {
 
     logout(req, res){
         res.clearCookie("usuarioLogado");
-        res.redirect('/login');
+        res.redirect('/');
     }
 
     /*autenticarUsuario(req, res) {
