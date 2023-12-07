@@ -8,9 +8,12 @@ const PessoasRoute = require('./routes/pessoasRoute');
 const NfRoute = require('./routes/nfRoute');
 const InternaRoute = require('./routes/internaRoute');
 const ProdutoRoute = require('./routes/produtoRoute');
+const Autenticação = require('./middlewares/autenticacao');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+let auth = new Autenticação()
+
 
 app.use(cookieParser());
 //configurando a nossa pasta public como o nosso repositorio de arquivos estáticos (css, js, imagens)
@@ -40,6 +43,11 @@ app.use('/', homeRota.router)
 let loginRota = new LoginRoute();
 app.use('/Login', loginRota.router);
 let hospedeRota = new HospedesRoute();
+
+
+app.use(auth.verificaUsuarioLogadoAdmin);
+
+
 app.use('/archive/Hospedes', hospedeRota.router);
 let nfRota = new NfRoute();
 app.use('/NF', nfRota.router);
