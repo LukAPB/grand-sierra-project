@@ -26,7 +26,7 @@ class pessoasController {
 
             let existePessoa = pessoa.obterPessoa(req.body.CNPJ);
 
-            if (existePessoa != null){
+            if (existePessoa != null && existePessoa > 0){
                 ok = false;
                 msg = "CNPJ já cadastrado!"
             }
@@ -74,18 +74,34 @@ class pessoasController {
 
     async alterarPessoa(req, res) {
         var ok = true;
+        var msg = ""
 
         if(req.body.razaoSocial != "" && req.body.email != "" && req.body.CEP != '' && req.body.logradouro != '' && req.body.CNPJ != '' && req.body.numTelefone != '') {
 
             let pessoa = new PessoaJuridicaModel(req.body.razaoSocial, req.body.email, req.body.logradouro, req.body.CEP, req.body.numTelefone, req.body.CNPJ, req.body.id)
             
-            ok = await pessoa.gravar();
+            let pessoa2 = new PessoaJuridicaModel();
+            pessoa2 = await pessoa2.obterPessoa(req.body.CNPJ);
+
+            if (pessoa2 == null){
+                ok = await pessoa.gravar();
+                msg = "Pessoa alterada com sucesso!"
+            }
+            else if (pessoa.pessoaId == pessoa2.pessoaId && pessoa.pjCNPJ == pessoa2.pjCNPJ){
+                ok = await pessoa.gravar();
+                msg = "Pessoa alterada com sucesso!"
+            }
+            else{
+                ok = false;
+                msg = "CNPJ já cadastrado!";
+            }            
         }
         else{
             ok = false;
+            msg = "Preencha todos os campos corretamente!";
         }
 
-        res.send({ ok: ok })
+        res.send({ ok: ok, msg: msg})
     }
 
     async excluirPessoa(req, res){

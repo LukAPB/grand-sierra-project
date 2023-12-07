@@ -110,6 +110,12 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 })
 
+function validarEmail(email) {
+    // Verifica se o email possui o formato correto
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 function alterarPessoa() {
     
     var razaoSocial = document.getElementById("razaoSocial");
@@ -158,7 +164,7 @@ function alterarPessoa() {
                 window.location.href = "/Pessoas";
             }
             else{
-                alert("Erro ao alterar pessoa");
+                alert(r.msg);
             }
         })
         .catch(e => {
