@@ -144,7 +144,7 @@ function gravarPessoa() {
     //if de validação básica
     if(razaoSocial.value != "" && validarEmail(email.value) && CEP.value.length >= 8
     && logradouro.value != "" && CNPJ.value.length >= 14
-    && numTelefone.value.length >= 9)
+    && numTelefone.value.length >= 8)
     {
 
         var pessoa = {
