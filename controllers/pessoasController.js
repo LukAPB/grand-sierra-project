@@ -19,17 +19,29 @@ class pessoasController {
 
     async cadastrarPessoas(req, res) {
         var ok = true;
+        var msg = "";
         if(req.body.razaoSocial != "" && req.body.email != "" && req.body.CEP != "" && 
         req.body.numTelefone  != '' && req.body.logradouro != '' && req.body.CNPJ  != '') {
             let pessoa = new PessoaJuridicaModel(req.body.razaoSocial, req.body.email, req.body.logradouro, req.body.CEP, req.body.numTelefone, req.body.CNPJ, 0);
 
-            ok = await pessoa.gravar();
+            let existePessoa = pessoa.obterPessoa(req.body.CNPJ);
+
+            if (existePessoa != null){
+                ok = false;
+                msg = "CNPJ já cadastrado!"
+            }
+            else{
+                ok = await pessoa.gravar();
+                msg = "Pessoa cadastrada com sucesso!"
+            }
+
         }
         else{
             ok = false;
+            msg = "Preencha todos os campos corretamente!"
         }
 
-        res.send({ ok: ok })
+        res.send({ ok: ok , msg: msg})
     }
 
     async verificaCNPJ(req, res){

@@ -74,6 +74,9 @@ class PessoaJuridicaModel extends PessoasModel {
 
             return pessoa;
         }
+        else{
+            return null;
+        }
     }
 
     async excluir(codigo){

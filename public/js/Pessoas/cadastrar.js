@@ -172,7 +172,8 @@ function gravarPessoa() {
                 window.location.href = "/Pessoas";
             }
             else{
-                alert("Erro ao cadastrar pessoa");
+                alert(r.msg);
+                window.location.href = "/Pessoas";
             }
         })
         .catch(e => {
