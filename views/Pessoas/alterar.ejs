@@ -113,7 +113,10 @@
                   <div class="col-md-10">
                     <div class="form-group">
                       <label for="email">E-mail</label>
-                      <input value="<%=pessoa.pessoaEmail%>" type="text" name="email" id="email" placeholder="" class="form-control"/>
+                      <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                        <input value="<%=pessoa.pessoaEmail%>" type="email" name="email" id="email" placeholder="" class="form-control"/>
+                    </div>
                     </div>
                   </div>
                 </div>
