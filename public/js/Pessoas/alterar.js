@@ -155,6 +155,7 @@ function alterarPessoa() {
         .then(r=> {
             if(r.ok) {
                 alert("Pessoa alterada!");
+                window.location.href = "/Pessoas";
             }
             else{
                 alert("Erro ao alterar pessoa");

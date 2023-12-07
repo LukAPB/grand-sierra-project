@@ -169,6 +169,7 @@ function gravarPessoa() {
         .then(r=> {
             if(r.ok) {
                 alert("Pessoa cadastrada!");
+                window.location.href = "/Pessoas";
             }
             else{
                 alert("Erro ao cadastrar pessoa");

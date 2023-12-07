@@ -75,6 +75,7 @@ function gravarProduto() {
         .then(r=> {
             if(r.ok) {
                 alert("Produto cadastrado!");
+                window.location.href = "/Produto";
             }
             else{
                 alert("Erro ao cadastrar produto");
