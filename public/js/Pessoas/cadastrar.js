@@ -135,16 +135,16 @@ function gravarPessoa() {
     var numTelefone = document.getElementById("numTelefone");
 
     razaoSocial.classList.remove("is-invalid");
-    email.classList.add("is-invalid");
-    CEP.classList.add("is-invalid");
-    logradouro.classList.add("is-invalid");
-    CNPJ.classList.add("is-invalid");
-    numTelefone.classList.add("is-invalid");
+    email.classList.remove("is-invalid");
+    CEP.classList.remove("is-invalid");
+    logradouro.classList.remove("is-invalid");
+    CNPJ.classList.remove("is-invalid");
+    numTelefone.classList.remove("is-invalid");
 
     //if de validação básica
-    if(razaoSocial.value != "" && validarEmail(email.value) && CEP.value.length >= 13
-    && logradouro.value != '' && CNPJ.value.length >= 14
-    && numTelefone.value.length >= 8)
+    if(razaoSocial.value != "" && validarEmail(email.value) && CEP.value.length >= 8
+    && logradouro.value != "" && CNPJ.value.length >= 14
+    && numTelefone.value.length >= 9)
     {
 
         var pessoa = {
@@ -185,15 +185,15 @@ function gravarPessoa() {
             CNPJ.classList.add("is-invalid");
         if (razaoSocial.value == "")
             razaoSocial.classList.add("is-invalid");
-        if (CEP.value.length <= 13)
+        if (CEP.value.length <= 7)
             CEP.classList.add("is-invalid");
         if (!validarEmail(email.value))
             email.classList.add("is-invalid");
-        if (CNPJ.value.length <= 14)
+        if (CNPJ.value.length <= 13)
             CNPJ.classList.add("is-invalid");
-        if (numTelefone.value.length <= 8)
+        if (numTelefone.value.length <= 7)
             numTelefone.classList.add("is-invalid");
-        if (logradouro.value == '')
+        if (logradouro.value == "")
             logradouro.classList.add("is-invalid");
         
         alert("Preencha os campos destacados!");
