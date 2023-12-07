@@ -62,13 +62,6 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
-    window.onload = function(){
-        var inputs = document.getElementsByTagName("input");
-        for(var i = 0; i < inputs.length; i++){
-            inputs[i].value = "";
-        }
-    };
-
     function validarCNPJ(cnpj) {
         cnpj = cnpj.replace(/[^\d]+/g, '');
 
