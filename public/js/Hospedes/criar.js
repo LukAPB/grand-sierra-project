@@ -17,7 +17,7 @@ function gravarHospede() {
     var nasc = document.getElementById("nasc");
     var CPF = document.getElementById("CPF");
     var CEP = document.getElementById("CEP");
-    var checkin = document.getElementById("checkin")
+    var reserva = document.getElementById("reserva")
     var checkout = document.getElementById("checkout");
 
 
@@ -39,8 +39,8 @@ function gravarHospede() {
         listaErros.push("CEP");
     }
 
-    if(checkin.value == "" || checkin.value == undefined || checkin.value == null){
-        listaErros.push("checkin");
+    if(reserva.value == "" || reserva.value == undefined || reserva.value == null){
+        listaErros.push("reserva");
     }
 
     if(checkout.value == "" || checkout.value == undefined || checkout.value == null){
@@ -54,7 +54,7 @@ function gravarHospede() {
             dataNasc: nasc.value,
             hospedeCPF: CPF.value,
             hospedeCEP: CEP.value,
-            hospedeCheckin: checkin.value,
+            hospedeReserva: reserva.value,
             hospedeCheckout: checkout.value
         };
 
@@ -72,7 +72,7 @@ function gravarHospede() {
                 nasc.value = "";
                 CPF.value = "";
                 CEP.value = "";
-                checkin.value = "";
+                reserva.value = "";
                 checkout.value = ""
 
                 document.getElementById("alertaSucesso").innerText = "Hospede gravado com sucesso!";
@@ -111,7 +111,7 @@ function limparErros() {
     document.getElementById("CPF").classList.remove("campoErro");
     document.getElementById("CEP").classList.remove("campoErro");
     document.getElementById("checkout").classList.remove("campoErro");
-    document.getElementById("checkin").classList.remove("campoErro")
+    document.getElementById("reserva").classList.remove("campoErro")
   
 
     document.getElementById("erros").style = "display:none";

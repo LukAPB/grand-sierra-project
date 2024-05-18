@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         <div class="d-flex px-2">
                           <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
                             <i class="fa-regular fa-building" style="color: #000000;"></i>
-                            <!-- <img src="/img/small-logos/logo-spotify.svg" class="w-80" alt="spotify"> -->
+                            // <img src="/img/small-logos/logo-spotify.svg" class="w-80" alt="spotify">
                           </div>
                           <div class="my-auto">
                             <h6 class="mb-0 text-sm">Pessoa Jurídica</h6>

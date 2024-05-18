@@ -1,10 +1,10 @@
 var dados    = [
-    {id: 1, checkin:'01/08/2023', checkout: '15/08/2023', pessoas: 4}
+    {id: 1, reserva:'01/08/2023', checkout: '15/08/2023', pessoas: 4}
 ];
 
 function adicionarItem(){
-    let campoCheckin = document.getElementById("checkin");
-    let checkin = document.getElementById("checkin").valueAsDate;
+    let campoReserva = document.getElementById("reserva");
+    let reserva = document.getElementById("reserva").valueAsDate;
     let checkout = document.getElementById("checkout").valueAsDate;
 
     let adultos = document.getElementById("adultos");
@@ -14,7 +14,7 @@ function adicionarItem(){
     let pessoas = parseInt(adultos.value) + parseInt(criancas.value);
     let novoItem = {
         id: new Date().getTime(), //para gerar um código automaticamente
-        checkin: checkin.toLocaleDateString(),
+        reserva: reserva.toLocaleDateString(),
         checkout: checkout.toLocaleDateString(),
         pessoas: pessoas
     };
@@ -23,14 +23,14 @@ function adicionarItem(){
     dados.push(novoItem);
     montarTabela();
 
-    checkin.value = '';
+    reserva.value = '';
     checkout.value = '';
     adultos.value = '';
     criancas.value = '';
     tipo.value = '';
     quartos.value = '';
     //coloca o foco do cursor no elemento <input>
-    campoCheckin.focus();
+    campoReserva.focus();
 };
 
 function montarTabela(){
@@ -40,7 +40,7 @@ function montarTabela(){
     for (let item of dados){
         html += `<tr">
                     <th scope="row"><input type="checkbox" data-id="${item.id}"></td>
-                    <td>${item.checkin}</td>
+                    <td>${item.reserva}</td>
                     <td>${item.checkout}</td>
                     <td>${item.pessoas}</td>
                     <td>
@@ -231,7 +231,7 @@ function validarFormularioReserva(event) {
     event.preventDefault(); 
 
     var form = document.getElementById('form-reserva');
-    var checkin = document.getElementById('checkin').value;
+    var reserva = document.getElementById('reserva').value;
     var checkout = document.getElementById('checkout').value;
     var adultos = document.getElementById('adultos').value;
     var criancas = document.getElementById('criancas').value;
@@ -240,23 +240,23 @@ function validarFormularioReserva(event) {
     var erros = [];
 
 
-    if (checkin === "" || checkout === "") {
+    if (reserva === "" || checkout === "") {
         erros.push("Por favor, preencha as datas de check-in e check-out");
         form.classList.add("invalido");
     } else {
-        var dataCheckin = new Date(checkin + 'T00:00:00');
+        var dataReserva = new Date(reserva + 'T00:00:00');
         var dataCheckout = new Date(checkout + 'T00:00:00');
         var dataAtual = new Date();
         
         dataAtual.setHours(0, 0, 0, 0);
 
-        if (dataCheckin.getTime() < dataAtual.getTime()) {
+        if (dataReserva.getTime() < dataAtual.getTime()) {
             erros.push("A data de check-in deve ser igual ou posterior ao dia atual");
             form.classList.add("invalido");
         } else {
             form.classList.remove("invalido");
 
-            if (dataCheckin >= dataCheckout) {
+            if (dataReserva >= dataCheckout) {
                 erros.push("A data de check-in deve ser anterior à data de check-out");
                 form.classList.add("invalido");
             } else {
@@ -295,7 +295,7 @@ function validarFormularioReserva(event) {
         erro.style.color = "red";
     } else {
         erro.innerHTML = "";
-        //alert("Reserva efetuada com sucesso!");
+        alert("Reserva efetuada com sucesso!");
         form.reset();
     }
 }

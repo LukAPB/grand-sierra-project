@@ -1,7 +1,8 @@
 const NotaFiscalModel = require("../models/notaFiscalModel");
-const PessoaJuridicaModel = require("../models/pessoaJuridicaModel");
+const PessoaModel = require("../models/pessoasModel");
 const ProdutoModel = require("../models/produtoModel");
 const ProdutosDaNotaModel = require("../models/produtosDaNotaModel");
+const PessoaJuridicaModel = require("../models/pessoaJuridicaModel");
 
 class NfController {
 
@@ -26,14 +27,16 @@ class NfController {
             let cnpj = listaProdutos[0].CNPJ;
             
 
-            let pessoa = new PessoaJuridicaModel();
-            let pessoaJuridica = await pessoa.obterPessoa(cnpj);
+            let pessoa = new PessoaModel();
+            let pessoaJuridica = await pessoa.CNPJ(cnpj);
+            // console.log("Teste",pessoaJuridica[0].pessoaId);
+            console.log("teste2",pessoaJuridica.pessoaId);
 
-            let nota = new NotaFiscalModel(listaProdutos[0].notaNum, listaProdutos[0].notaValor.replace(",", "."), listaProdutos[0].notaData);
+            let nota = new NotaFiscalModel(listaProdutos[0].notaNum, listaProdutos[0].notaValor.replace(",", "."), listaProdutos[0].notaData, pessoaJuridica.pessoaId);
             await nota.gravar();
 
             for(let i = 0; i < listaProdutos.length; i++){
-                let pedidoItem = new ProdutosDaNotaModel(listaProdutos[i].codigoBarras, listaProdutos[i].notaNum, listaProdutos[i].produtoQuantidade, listaProdutos[i].produtoValor, pessoaJuridica.pessoaId);
+                let pedidoItem = new ProdutosDaNotaModel(listaProdutos[i].codigoBarras, listaProdutos[i].notaNum, listaProdutos[i].produtoQuantidade, listaProdutos[i].produtoValor);
                 await pedidoItem.gravar();
 
                 let produto = new ProdutoModel();

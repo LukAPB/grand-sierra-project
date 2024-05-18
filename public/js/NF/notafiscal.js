@@ -1,4 +1,5 @@
 let listaProdutos = [];
+let pessoaId = 0;
 let valorTotalDaNota = 0;
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -281,13 +282,14 @@ document.addEventListener("DOMContentLoaded", function(){
         }        
     }
 
-    function gravarNotaBanco(){      
+    function gravarNotaBanco(){ 
+        console.log("Teste",pessoaId) ;     
         fetch('/NF/gravarNota', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({listaProdutos: listaProdutos})
+            body: JSON.stringify({listaProdutos: listaProdutos, pessoaId})
         })
         .then(r=> {
             return r.json();

@@ -8,6 +8,7 @@ const PessoasRoute = require('./routes/pessoasRoute');
 const NfRoute = require('./routes/nfRoute');
 const InternaRoute = require('./routes/internaRoute');
 const ProdutoRoute = require('./routes/produtoRoute');
+const ReservaRoute = require('./routes/reservaRoute');
 const Autenticação = require('./middlewares/autenticacao');
 const cookieParser = require('cookie-parser');
 
@@ -57,10 +58,12 @@ let internaRota = new InternaRoute();
 app.use('/interna', internaRota.router);
 let produtoRota = new ProdutoRoute();
 app.use('/Produto', produtoRota.router);
+let reservaRota = new ReservaRoute();
+app.use('/Reserva', reservaRota.router);
 
 
 
 //ponto de inicio do nosso servidor web
 const server = app.listen('5000', function() {
-    console.log('Servidor web iniciado');
+    console.log('Servidor web iniciado:', server.address().port);
 });

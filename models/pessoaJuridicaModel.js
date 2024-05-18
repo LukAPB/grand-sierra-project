@@ -64,7 +64,7 @@ class PessoaJuridicaModel extends PessoasModel {
         if (rows.length > 0){
        
             let pessoa = new PessoaJuridicaModel();
-            pessoa.pessoaId = rows[0]["pessoa_id"];
+            pessoa.#pessoaId = rows[0]["pessoa_id"];
             pessoa.pessoaNome = rows[0]["nome"];
             pessoa.#pjCNPJ = rows[0]["pj_cnpj"];
             pessoa.pessoaCEP = rows[0]["CEP"];

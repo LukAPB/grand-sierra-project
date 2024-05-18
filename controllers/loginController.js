@@ -15,15 +15,15 @@ class LoginController {
         res.redirect('/');
     }
 
-    /*autenticarUsuario(req, res) {
-        if(req.body.inputEmail == "teste@teste.com" 
-        && req.body.inputPassword == "12345"){
-            res.redirect('/');
-        }
-        else {
-            res.render('login/login', { msgErro: "Usuário ou senha inválidos", layout: 'login/login' })
-        }
-    }*/
+    // autenticar(req, res) {
+    //     if(req.body.inputEmail == "teste@teste.com" 
+    //     && req.body.inputPassword == "12345"){
+    //         res.redirect('/');
+    //     }
+    //     else {
+    //         res.render('login/login', { msgErro: "Usuário ou senha inválidos", layout: 'login/login' })
+    //     }
+    // }
 
     async autenticar(req, res){
         if(req.body.email != undefined && req.body.senha != undefined){

@@ -9,7 +9,7 @@ class HospedeModel {
     #hospedeData;
     #hospedeCEP;
     #hospedeCPF;
-    #hospedeCheckin;
+    #hospedeReserva;
     #hospedeCheckout;
  
     get hospedeId() { 
@@ -52,12 +52,12 @@ class HospedeModel {
         this.#hospedeCPF = hospedeCPF;
     }
 
-    get hospedeCheckin(){
-        return this.#hospedeCheckin;
+    get hospedeReserva(){
+        return this.#hospedeReserva;
     }
 
-    set hospedeCheckin(hospedeCheckin) {
-        this.#hospedeCheckin = hospedeCheckin;
+    set hospedeReserva(hospedeReserva) {
+        this.#hospedeReserva = hospedeReserva;
     }
 
     get hospedeCheckout(){
@@ -68,13 +68,13 @@ class HospedeModel {
         this.#hospedeCheckout = hospedeCheckout;
     }
 
-    constructor(hospedeId, hospedeNome, hospedeData, hospedeCEP, hospedeCPF, hospedeCheckin, hospedeCheckout) {
+    constructor(hospedeId, hospedeNome, hospedeData, hospedeCEP, hospedeCPF, hospedeReserva, hospedeCheckout) {
         this.#hospedeId = hospedeId;
         this.#hospedeNome = hospedeNome;
         this.#hospedeData = hospedeData;
         this.#hospedeCEP = hospedeCEP;
         this.#hospedeCPF = hospedeCPF;
-        this.#hospedeCheckin = hospedeCheckin;
+        this.#hospedeReserva = hospedeReserva;
         this.#hospedeCheckout = hospedeCheckout;
     }
 
@@ -84,7 +84,7 @@ class HospedeModel {
 
         let rows = await conexao.ExecutaComando(sql, valores);
         if(rows.length > 0){
-            return new HospedeModel(rows[0]["hos_id"], rows[0]["hos_nome"], rows[0]["hos_data"], rows[0]["hos_CEP"], rows[0]["hos_CPF"], rows[0]["hos_Checkin"], rows[0]["hos_Checkout"]);
+            return new HospedeModel(rows[0]["hos_id"], rows[0]["hos_nome"], rows[0]["hos_data"], rows[0]["hos_CEP"], rows[0]["hos_CPF"], rows[0]["hos_Reserva"], rows[0]["hos_Checkout"]);
         }
         return null;
     }
@@ -98,7 +98,7 @@ class HospedeModel {
         for(let i = 0; i< rows. length; i++){
             let row = rows[i];
             listahospedes.push(
-                new HospedeModel(row['hos_id'], row['hos_nome'], row['hos_data'], row['hos_CEP'], row['hos_CPF'], ["hos_Checkin"], ["hos_Checkout"])
+                new HospedeModel(row['hos_id'], row['hos_nome'], row['hos_data'], row['hos_CEP'], row['hos_CPF'], ["hos_Reserva"], ["hos_Checkout"])
             );
         }
 
@@ -108,14 +108,14 @@ class HospedeModel {
     async gravarhospede() {
         let result = false;
         if(this.#hospedeId == 0){
-            let sql = "insert into tb_hospede (hos_nome, hos_data, hos_CEP, hos_CPF, hos_Checkin, hos_Checkout) values (?, ?, ?, ?)";
-            let valores = [this.#hospedeNome, this.#hospedeData, this.#hospedeCEP, this.#hospedeCPF, this.#hospedeCheckin, this.#hospedeCheckout];
+            let sql = "insert into tb_hospede (hos_nome, hos_data, hos_CEP, hos_CPF, hos_Reserva, hos_Checkout) values (?, ?, ?, ?)";
+            let valores = [this.#hospedeNome, this.#hospedeData, this.#hospedeCEP, this.#hospedeCPF, this.#hospedeReserva, this.#hospedeCheckout];
     
             result = await conexao.ExecutaComandoNonQuery(sql, valores);
         }
         else{
-            let sql = "update tb_hospede set hos_nome = ?, hos_data = ?, hos_CEP = ?, hos_CPF = ?, hos_Checkin = ?, hos_Checkout = ? where hos_id = ?";
-            let valores = [this.#hospedeNome, this.#hospedeData, this.#hospedeCEP, this.#hospedeCPF, this.#hospedeCheckin, this.#hospedeCheckout, this.#hospedeId];
+            let sql = "update tb_hospede set hos_nome = ?, hos_data = ?, hos_CEP = ?, hos_CPF = ?, hos_Reserva = ?, hos_Checkout = ? where hos_id = ?";
+            let valores = [this.#hospedeNome, this.#hospedeData, this.#hospedeCEP, this.#hospedeCPF, this.#hospedeReserva, this.#hospedeCheckout, this.#hospedeId];
 
             result = await conexao.ExecutaComandoNonQuery(sql, valores);
         }

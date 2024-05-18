@@ -63,6 +63,20 @@ class PessoasModel{
 
         return null
     }
+
+    async CNPJ(cnpj){
+        let sql = "select * from Pessoas where pj_cnpj = ?";
+
+        let valores = [cnpj];
+
+        let rows = await conexao.ExecutaComando(sql, valores);
+
+        if(rows.length > 0){
+            return new PessoasModel(rows[0]['pessoa_id'], rows[0]['nome'], rows[0]['senha'], rows[0]['email']);
+        }
+
+        return null
+    }
 }
 
 module.exports = PessoasModel;
